@@ -101,7 +101,7 @@
         <div class="container mx-auto px-6 text-center">
             <div class="js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">2026년,<br>나는 검진 대상자일까?</h2>
-                <p class="text-gray-500 mb-12">새해가 밝으면 가장 먼저 확인해야 할 필수 체크리스트</p>
+                <p class="text-gray-500 mb-12">새해가 밝으면 가장 먼저 확인해야 할<br>필수 체크리스트</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
@@ -167,7 +167,8 @@
                     </p>
                 </div>
                 <!-- Item 2 -->
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 100ms;">
+                <!-- [수정됨] border-blue-500 -> border-transparent hover:border-blue-500 으로 변경 -->
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 100ms;">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-microscope"></i></div>
                     <h3 class="text-xl font-bold mb-3">대장 내시경 (정밀)</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">
@@ -193,13 +194,20 @@
                 
                 <div class="md:w-1/2 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                     <span class="bg-yellow-400 text-blue-900 px-3 py-1 rounded text-xs font-bold mb-4 inline-block">강력 추천</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-snug">
-                        남들 다 가는 오전 말고,<br>
-                        여유로운 <span class="text-yellow-400">‘오후 내시경’</span> 어때요?
+                    <h2 class="font-bold mb-6 leading-tight">
+                        <!-- 작게 처리 -->
+                        <span class="block text-lg md:text-xl font-medium mb-2 opacity-90">남들 다 가는 오전 말고,</span>
+                        <!-- 크게 강조 -->
+                        <span class="text-3xl md:text-5xl">
+                            여유로운 <span class="text-yellow-400">‘오후 내시경’</span><br>
+                            어때요?
+                        </span>
                     </h2>
-                    <p class="text-blue-200 mb-8 text-lg">
-                        “꼭두새벽부터 일어나야 한다?” 편견을 버리세요.<br>
-                        오후에 오시면 고객님의 시간과 컨디션을 지켜드립니다.
+                    <p class="text-blue-200 mb-8 text-lg leading-relaxed">
+                        “꼭두새벽부터 일어나야 한다?”<br>
+                        편견을 버리세요.<br>
+                        오후에 오시면 고객님의 시간과 컨디션을<br>
+                        지켜드립니다.
                     </p>
                     
                     <div class="bg-blue-800/50 p-6 rounded-lg border border-blue-700">
@@ -285,7 +293,8 @@
         <div class="container mx-auto px-6 text-center js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
             <h2 class="font-bold mb-6 leading-relaxed">
                 <span class="block text-4xl md:text-5xl mb-3">2026년의 시작</span>
-                <span class="text-xl md:text-2xl">한국건강관리협회 부산동래검진센터와 함께하세요</span>
+                <!-- [수정됨] <br> 제거 및 모바일 폰트 사이즈 조정(text-lg), 단어 단위 줄바꿈(break-keep) 적용 -->
+                <span class="text-lg md:text-2xl break-keep">한국건강관리협회 부산동래검진센터와 함께하세요</span>
             </h2>
             <p class="text-gray-400 mb-10">건강은 건강할 때 지키는 것이 가장 좋습니다.</p>
             
