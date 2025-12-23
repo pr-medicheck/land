@@ -24,7 +24,9 @@
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
                         url('2026 풍선.png'),
                         url('https://images.unsplash.com/photo-1530103862676-de3c9da59af7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
-            background-color: #60a5fa; 
+            
+            /* [수정] 파란색 배경 제거 */
+            /* background-color: #60a5fa; */
             
             /* [기본 설정: PC] cover로 꽉 채움 */
             background-size: cover;
@@ -33,12 +35,24 @@
             background-attachment: fixed; /* PC에서는 패럴랙스 효과 */
         }
 
-        /* [모바일 설정] JS 로딩 전 초기값: 세로 100% 맞춤 */
+        /* [모바일 전용 설정] */
         @media (max-width: 768px) {
+            /* 스크롤 거리를 확보하기 위한 래퍼 (JS로 높이 제어할 수도 있음) */
+            .mobile-scroll-wrapper {
+                height: 250vh; /* 스크롤 할 거리 (길수록 애니메이션이 천천히 진행됨) */
+                position: relative;
+            }
+
             .hero-bg {
-                background-attachment: scroll; /* 모바일 성능 최적화 */
-                background-size: auto 100vh;   /* 초기: 세로 꽉 채움 */
-                background-position: center top;
+                /* 스티키 포지션: 스크롤 내릴 때 화면 상단에 고정됨 */
+                position: sticky; 
+                top: 0; 
+                height: 100vh; /* 화면 높이만큼 차지 */
+                
+                background-attachment: scroll; 
+                background-position: center top; 
+                /* 초기 사이즈는 JS에서 계산하여 세로 100%로 설정됨 */
+                z-index: 10; /* 다른 콘텐츠보다 아래, 배경보다는 위에 */
             }
         }
 
@@ -82,34 +96,36 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-bg h-screen flex items-center justify-center text-center text-white pt-16">
-        <div class="container mx-auto px-6 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-            <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm mb-4 border border-white/30">
-                2026년 신년 맞이 건강 캠페인
-            </span>
-            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                2026년<br>
-                <span class="text-yellow-400">가볍게 시작하기</span>
-            </h1>
-            <p class="text-lg md:text-xl mb-10 text-gray-100 max-w-2xl mx-auto font-light leading-relaxed">
-                새해 다짐 1순위는 건강입니다.<br>
-                소화기 정밀 검사와 여유로운 오후 내시경으로<br>
-                몸과 마음이 가벼운 한 해를 시작하세요.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#target" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg imweb-btn">
-                    내 검진 대상 확인하기
-                </a>
-                <a href="tel:0515536400" class="bg-yellow-500 text-white px-8 py-4 rounded-lg font-bold text-lg imweb-btn">
-                    전화로 간편 예약하기
-                </a>
+    <!-- Hero Section Wrapper for Mobile Sticky Effect -->
+    <div class="mobile-scroll-wrapper">
+        <section class="hero-bg h-screen flex items-center justify-center text-center text-white pt-16">
+            <div class="container mx-auto px-6 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+                <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm mb-4 border border-white/30">
+                    2026년 신년 맞이 건강 캠페인
+                </span>
+                <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                    2026년<br>
+                    <span class="text-yellow-400">가볍게 시작하기</span>
+                </h1>
+                <p class="text-lg md:text-xl mb-10 text-gray-100 max-w-2xl mx-auto font-light leading-relaxed">
+                    새해 다짐 1순위는 건강입니다.<br>
+                    소화기 정밀 검사와 여유로운 오후 내시경으로<br>
+                    몸과 마음이 가벼운 한 해를 시작하세요.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <a href="#target" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg imweb-btn">
+                        내 검진 대상 확인하기
+                    </a>
+                    <a href="tel:0515536400" class="bg-yellow-500 text-white px-8 py-4 rounded-lg font-bold text-lg imweb-btn">
+                        전화로 간편 예약하기
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- Section 1: Target Audience (Check 1) -->
-    <section id="target" class="py-20 bg-white">
+    <section id="target" class="py-20 bg-white relative z-20"> <!-- z-index 추가하여 배경 위로 올라오게 함 -->
         <div class="container mx-auto px-6 text-center">
             <div class="js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">2026년,<br>나는 검진 대상자일까?</h2>
@@ -160,7 +176,7 @@
     </section>
 
     <!-- Section 2: Special Checkups -->
-    <section id="special" class="py-20 bg-gray-50">
+    <section id="special" class="py-20 bg-gray-50 relative z-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                 <span class="text-blue-600 font-bold text-sm tracking-widest uppercase">Special Care</span>
@@ -194,7 +210,7 @@
     </section>
 
     <!-- Section 3: Afternoon Endoscopy (Main Focus) -->
-    <section id="afternoon" class="py-20 bg-blue-900 text-white">
+    <section id="afternoon" class="py-20 bg-blue-900 text-white relative z-20">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 
@@ -260,7 +276,7 @@
     </section>
 
     <!-- Section 4: Tips -->
-    <section id="tips" class="py-20 bg-white">
+    <section id="tips" class="py-20 bg-white relative z-20">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold text-gray-900 mb-12 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">내시경 약 복용<br>힘들지 않아요!</h2>
             
@@ -290,7 +306,7 @@
     </section>
 
     <!-- Footer / CTA -->
-    <footer class="bg-gray-800 text-white py-16">
+    <footer class="bg-gray-800 text-white py-16 relative z-20">
         <div class="container mx-auto px-6 text-center js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
             <h2 class="font-bold mb-6 leading-relaxed">
                 <span class="block text-4xl md:text-5xl mb-3">2026년의 시작</span>
@@ -322,7 +338,7 @@
             });
         });
 
-        // 2. Scroll Reveal Animation (Intersection Observer)
+        // 2. Scroll Reveal Animation
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -342,39 +358,43 @@
             observer.observe(el);
         });
 
-        // 3. [UPDATED] Mobile Hero Background Scroll Zoom-OUT Effect
-        // 모바일(폭 768px 이하)에서만 작동
+        // 3. [UPDATED] Mobile Sticky Hero + Zoom-Out Effect
         const heroBg = document.querySelector('.hero-bg');
+        const heroWrapper = document.querySelector('.mobile-scroll-wrapper');
 
         function handleMobileHeroScroll() {
+            // 768px 이하 모바일 환경에서만 작동
             if (window.innerWidth <= 768) {
                 const scrollY = window.scrollY;
                 const vh = window.innerHeight;
                 const vw = window.innerWidth;
                 const screenRatio = vh / vw; 
                 
-                // [설정] 초기 상태(Top): 세로 100% 꽉 채움 (auto 100vh)
-                // 가로형 이미지를 세로형 화면에 세로 100%로 맞추면 가로 너비는 약 200%~300%가 됨 (Zoom-in 상태)
-                // 이미지 비율을 대략 1.77(16:9)로 가정 시 초기 가로 % 계산:
+                // [설정] 초기 상태(Top): 세로 100% 꽉 채움 (세로형 화면에서 이미지 확대됨)
+                // 16:9 이미지 비율(1.77) 가정 시 가로 % 계산
                 const startWidthPercent = screenRatio * 177; 
                 
-                // [설정] 최종 상태(Scroll Down): 가로 100% (화면 너비에 딱 맞음)
+                // [설정] 최종 상태(Scroll End): 가로 100%
                 const endWidthPercent = 100;
+
+                // 스크롤 범위 (wrapper 높이 - 뷰포트 높이)
+                // 이 거리만큼 스크롤하는 동안 애니메이션이 진행됨
+                const maxScroll = heroWrapper.offsetHeight - vh;
                 
-                // 스크롤 감도 조절 (숫자가 클수록 빨리 줄어듦)
-                const zoomSpeed = 0.3; 
+                // 진행률 (0 ~ 1)
+                let progress = scrollY / maxScroll;
+                if (progress > 1) progress = 1;
+                if (progress < 0) progress = 0;
+
+                // 진행률에 따라 너비 계산 (Start -> End)
+                let currentWidth = startWidthPercent - ((startWidthPercent - endWidthPercent) * progress);
                 
-                // 스크롤 내릴수록 %가 줄어듦 (Zoom-out)
-                let currentWidth = startWidthPercent - (scrollY * zoomSpeed);
-                
-                // 100%보다 작아지지 않게 제한 (최종 상태 고정)
-                if (currentWidth < endWidthPercent) currentWidth = endWidthPercent;
-                
+                // CSS 적용
                 heroBg.style.backgroundSize = `${currentWidth}% auto`;
                 heroBg.style.backgroundPosition = 'center top'; 
                 
             } else {
-                // PC 등 큰 화면에서는 CSS 기본값(cover) 사용
+                // PC 등 큰 화면에서는 CSS 기본값 사용
                 heroBg.style.backgroundSize = ''; 
                 heroBg.style.backgroundPosition = '';
             }
