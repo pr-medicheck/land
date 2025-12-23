@@ -11,119 +11,209 @@
     <meta property="og:description" content="2026년 검진 대상자 확인 및 오후 내시경 혜택 안내!">
     <meta property="og:image" content="kakao_thumb.jpg">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <!-- 폰트: Noto Sans KR -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- 아이콘: FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- [수정] Tailwind CDN 제거하고 순수 CSS로 변환 -->
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; }
+        /* --- Reset & Variables --- */
+        :root {
+            --primary-blue: #2563eb; /* blue-600 */
+            --primary-dark: #1e3a8a; /* blue-900 */
+            --accent-yellow: #facc15; /* yellow-400 */
+            --bg-gray: #f9fafb; /* gray-50 */
+            --text-dark: #1f2937; /* gray-800 */
+            --text-light: #6b7280; /* gray-500 */
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans KR', sans-serif; color: var(--text-dark); background-color: var(--bg-gray); line-height: 1.5; word-break: keep-all; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- Utilities --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .text-center { text-align: center; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .hidden { display: none; }
+        
+        @media (min-width: 768px) {
+            .md-flex { display: flex; }
+            .md-flex-row { flex-direction: row; }
+            .md-hidden { display: none; }
+            .md-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+            .md-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+            .md-w-half { width: 50%; }
+            .md-text-left { text-align: left; }
+        }
+
+        .grid { display: grid; gap: 2rem; }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .font-bold { font-weight: 700; }
+        .font-black { font-weight: 900; }
+        .text-sm { font-size: 0.875rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-6xl { font-size: 3.75rem; }
+        .text-blue { color: var(--primary-blue); }
+        .text-yellow { color: var(--accent-yellow); }
+        .text-white { color: var(--white); }
+        .text-gray-500 { color: var(--text-light); }
+        .bg-white { background-color: var(--white); }
+        .bg-blue-50 { background-color: #eff6ff; }
+        .border { border: 1px solid #e5e7eb; }
+        .border-blue-100 { border-color: #dbeafe; }
+        
+        /* --- Components --- */
+        /* Header */
+        header { position: fixed; width: 100%; top: 0; z-index: 50; background-color: rgba(255, 255, 255, 0.95); box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); transition: all 0.3s; }
+        .nav-link { color: var(--text-light); margin-left: 2rem; font-weight: 500; transition: color 0.3s; }
+        .nav-link:hover { color: var(--primary-blue); }
+        .header-btn { width: 40px; height: 40px; border-radius: 50%; background-color: var(--primary-blue); color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        /* Buttons */
+        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 0.5rem; font-weight: 700; transition: all 0.3s; cursor: pointer; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-white { background-color: white; color: var(--primary-dark); }
+        .btn-blue { background-color: var(--primary-blue); color: white; }
+        .btn-yellow { background-color: var(--accent-yellow); color: white; }
+        
+        /* Hero Section */
         .hero-bg {
-            /* [수정] 텍스트 가독성을 위해 오버레이 농도를 0.2 -> 0.4로 진하게 변경 */
-            /* 배경 이미지 경로를 다시 로컬 파일('2026 풍선.png')로 변경 */
+            /* 배경 이미지 설정 */
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('2026 풍선.png');
-            
-            background-color: #ffffff; /* 흰색 배경 */
-            
-            /* [PC 초기 설정] JS가 로드되기 전에는 cover로 보여줌 */
+                        url('https://github.com/pr-medicheck/land/blob/main/2026%20%ED%92%8D%EC%84%A0.png?raw=true');
+            background-color: #ffffff;
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* PC에서는 패럴랙스 효과 */
+            background-attachment: fixed; /* PC parallax */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
         }
 
-        /* [모바일 전용 설정] */
+        /* Hero Text Shadows */
+        .text-shadow-xl { text-shadow: 0 4px 6px rgba(0,0,0,0.5); }
+        .text-shadow-md { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        
+        /* Sections */
+        section { padding: 5rem 0; }
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: #111827; }
+        .section-desc { color: var(--text-light); margin-bottom: 3rem; }
+
+        /* Card Styles */
+        .card { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transition: all 0.3s; border-bottom: 4px solid transparent; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border-bottom-color: var(--primary-blue); }
+        
+        /* Mobile Specifics */
         @media (max-width: 768px) {
-            /* 스크롤 거리를 확보하기 위한 래퍼 */
-            .mobile-scroll-wrapper {
-                height: 200vh; /* 스크롤 길이 조정 */
-                position: relative;
-            }
-
+            .mobile-scroll-wrapper { height: 200vh; position: relative; }
             .hero-bg {
-                /* 스티키 포지션: 스크롤 내릴 때 화면 상단에 고정됨 */
-                position: sticky; 
-                top: 0; 
-                height: 100vh; /* 화면 높이만큼 차지 */
-                
-                background-attachment: scroll; 
-                /* 초기: 세로(height) 100vh에 맞춤 -> 이미지가 크게 보임 (Zoom-in 상태) */
-                background-size: auto 100vh;   
-                background-position: center top; 
-                
-                /* [중요] 이미지가 사라지지 않고 다음 섹션이 덮고 올라오도록 z-index 설정 */
-                z-index: 0; 
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                background-attachment: scroll;
+                background-size: auto 100vh; /* Start zoomed in */
+                background-position: center top;
+                z-index: 0;
             }
+            .section-title { font-size: 1.5rem; }
+            .text-6xl { font-size: 3rem; }
+            .text-4xl { font-size: 2rem; }
+            .container { padding: 0 1rem; }
+            .grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .nav-link { display: none; } /* Hide nav links on mobile */
+            .hidden-mobile { display: none; }
+            
+            /* Footer buttons vertical on mobile */
+            .footer-btns { flex-direction: column; }
+            .footer-btns .btn { width: 100%; margin-bottom: 0.5rem; }
         }
 
-        .imweb-btn {
-            transition: all 0.3s ease;
-        }
-        .imweb-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        @media (min-width: 769px) {
+            .footer-btns { flex-direction: row; }
+            .footer-btns .btn { width: auto; margin: 0 0.5rem; }
         }
 
-        /* 스크롤 애니메이션: JS로 클래스 토글 방식 사용 */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Animation Classes */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Misc */
+        .badge { display: inline-block; background-color: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 9999px; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(4px); }
+        .check-icon { color: #16a34a; background: #dcfce7; padding: 0.5rem; border-radius: 50%; margin-right: 1rem; }
+        .benefit-card { display: flex; align-items: center; background: white; color: #1f2937; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .benefit-num { background: #dbeafe; color: var(--primary-blue); width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; font-size: 1.25rem; margin-right: 1rem; flex-shrink: 0;}
+        
+        /* Social Buttons */
+        .social-btn { width: 3.5rem; height: 3.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: opacity 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .social-btn:hover { opacity: 0.9; }
+        .btn-kakao { background-color: #FEE500; color: #3c1e1e; }
+        .btn-insta { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); color: white; }
+        .btn-naver { background-color: #03C75A; color: white; }
+
+        /* Z-index layers */
+        .relative-z10 { position: relative; z-index: 10; background-color: inherit; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-    <!-- Header (Sticky) -->
-    <header class="fixed w-full top-0 z-50 bg-white shadow-sm opacity-95 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold text-blue-900 tracking-tighter">
-                한국건강관리협회 <span class="text-blue-600">부산동래검진센터</span>
+    <!-- Header -->
+    <header>
+        <div class="container flex justify-between items-center" style="padding-top: 1rem; padding-bottom: 1rem;">
+            <div class="text-xl font-bold text-blue" style="color: #1e3a8a;">
+                한국건강관리협회 <span style="color: #2563eb;">부산동래검진센터</span>
             </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
-                <a href="#target" class="hover:text-blue-600 transition">검진 대상자</a>
-                <a href="#special" class="hover:text-blue-600 transition">특화 검진</a>
-                <a href="#afternoon" class="hover:text-blue-600 transition">오후 내시경</a>
-                <a href="#tips" class="hover:text-blue-600 transition">복용 꿀팁</a>
+            <nav class="md-flex hidden">
+                <a href="#target" class="nav-link">검진 대상자</a>
+                <a href="#special" class="nav-link">특화 검진</a>
+                <a href="#afternoon" class="nav-link">오후 내시경</a>
+                <a href="#tips" class="nav-link">복용 꿀팁</a>
             </nav>
-            <a href="tel:0515536400" class="bg-blue-600 text-white w-10 h-10 flex items-center justify-center rounded-full text-lg shadow-md imweb-btn" aria-label="전화 예약">
+            <a href="tel:0515536400" class="header-btn" aria-label="전화 예약">
                 <i class="fa-solid fa-phone"></i>
             </a>
         </div>
     </header>
 
-    <!-- Hero Section Wrapper for Mobile Sticky Effect -->
+    <!-- Hero Section Wrapper -->
     <div class="mobile-scroll-wrapper">
-        <section class="hero-bg h-screen flex items-center justify-center text-center text-white pt-16">
-            <div class="container mx-auto px-6 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm mb-4 border border-white/30 drop-shadow-md">
+        <section class="hero-bg">
+            <div class="container js-reveal">
+                <span class="badge text-shadow-md">
                     신년 맞이 건강 캠페인
                 </span>
-                <!-- [수정] 텍스트에 그림자(drop-shadow-xl) 추가하여 가독성 강화 -->
-                <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight drop-shadow-xl">
+                <h1 class="text-6xl font-black text-shadow-xl" style="margin-bottom: 1.5rem; line-height: 1.2;">
                     2026년<br>
-                    <span class="text-yellow-400">가볍게 시작하기</span>
+                    <span class="text-yellow">가볍게 시작하기</span>
                 </h1>
-                <p class="text-lg md:text-xl mb-10 text-gray-100 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+                <p class="text-xl text-shadow-md" style="margin-bottom: 2.5rem; color: #f3f4f6;">
                     새해 다짐 1순위는 건강입니다.<br>
                     소화기 정밀 검사와 여유로운 오후 내시경으로<br>
                     몸과 마음이 가벼운 한 해를 시작하세요.
                 </p>
-                <div class="flex flex-col md:flex-row justify-center gap-4">
-                    <!-- [수정] 버튼 텍스트 변경: 홈페이지 검진 예약하기 -> 검진 대상자 확인하기 -->
-                    <!-- [수정] 링크 변경: 외부 링크 -> 내부 섹션(#target)으로 이동하도록 변경 -->
-                    <a href="#target" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg imweb-btn shadow-lg">
+                <div class="flex flex-col md-flex-row justify-center footer-btns" style="gap: 1rem; justify-content: center;">
+                    <a href="#target" class="btn btn-white shadow-lg">
                         검진 대상자 확인하기
                     </a>
-                    <!-- [수정] 전화 예약 버튼 색상: 노란색(bg-yellow-500) -> 파란색(bg-blue-600)으로 변경 -->
-                    <a href="tel:0515536400" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg imweb-btn shadow-lg">
+                    <a href="tel:0515536400" class="btn btn-blue shadow-lg">
                         전화로 간편 예약하기
                     </a>
                 </div>
@@ -131,90 +221,78 @@
         </section>
     </div>
 
-    <!-- Section 1: Target Audience (Check 1) -->
-    <!-- z-index를 10으로 설정하여 Sticky 배경(z-index 0) 위로 자연스럽게 덮이도록 함 -->
-    <section id="target" class="py-20 bg-white relative z-10"> 
-        <div class="container mx-auto px-6 text-center">
-            <div class="js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">2026년,<br>나는 검진 대상자일까?</h2>
-                <p class="text-gray-500 mb-12">새해가 밝으면 가장 먼저 확인해야 할<br>필수 체크리스트</p>
+    <!-- Section 1: Target Audience -->
+    <section id="target" class="relative-z10 bg-white"> 
+        <div class="container text-center">
+            <div class="js-reveal">
+                <h2 class="section-title">2026년,<br>나는 검진 대상자일까?</h2>
+                <p class="section-desc">새해가 밝으면 가장 먼저 확인해야 할<br>필수 체크리스트</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
-                <!-- Left: Big Number & General Checkup Info -->
-                <div class="bg-blue-50 rounded-2xl p-8 shadow-sm border border-blue-100 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                    <p class="text-xl text-blue-600 font-bold mb-2">2026년 검진대상</p>
-                    <div class="text-6xl font-black text-blue-900 mb-4">짝수년생</div>
-                    <p class="text-gray-600 mb-6">
+            <div class="grid md-grid-cols-2 items-center" style="max-width: 56rem; margin: 0 auto;">
+                <!-- Left Box -->
+                <div class="bg-blue-50 rounded-2xl js-reveal" style="padding: 2rem; border: 1px solid #dbeafe;">
+                    <p class="text-xl font-bold mb-2" style="color: #2563eb; margin-bottom: 0.5rem;">2026년 검진대상</p>
+                    <div class="text-6xl font-black mb-4" style="color: #1e3a8a; margin-bottom: 1rem;">짝수년생</div>
+                    <p class="text-gray-500 mb-6" style="margin-bottom: 1.5rem;">
                         출생연도 끝자리가<br>
                         <strong>0, 2, 4, 6, 8</strong>인 분들
                     </p>
 
-                    <!-- [추가됨] 일반건강검진 대상자 상세 안내 카드 -->
-                    <div class="bg-white rounded-xl p-5 text-left shadow-sm border border-blue-100">
-                        <h4 class="font-bold text-blue-800 mb-3 border-b pb-2 border-blue-100 flex items-center">
+                    <!-- Info Card -->
+                    <div class="bg-white rounded-xl" style="padding: 1.25rem; text-align: left; border: 1px solid #dbeafe;">
+                        <h4 class="font-bold text-blue mb-3" style="color: #1e40af; border-bottom: 1px solid #dbeafe; padding-bottom: 0.5rem; margin-bottom: 0.75rem;">
                             <i class="fa-solid fa-clipboard-list mr-2"></i> 일반건강검진 대상자는?
                         </h4>
-                        <ul class="text-sm text-gray-600 space-y-2 mb-3">
-                            <li class="flex items-start">
-                                <span class="text-blue-400 mr-2">•</span>
-                                <span class="leading-tight">지역세대주, 직장가입자,<br>20세 이상 세대원과 피부양자</span>
+                        <ul class="text-sm space-y-2 mb-3" style="color: #4b5563; margin-bottom: 0.75rem;">
+                            <li style="display: flex; margin-bottom: 0.5rem;">
+                                <span class="text-blue" style="margin-right: 0.5rem;">•</span>
+                                <span>지역세대주, 직장가입자,<br>20세 이상 세대원과 피부양자</span>
                             </li>
-                            <li class="flex items-start">
-                                <span class="text-blue-400 mr-2">•</span>
+                            <li style="display: flex;">
+                                <span class="text-blue" style="margin-right: 0.5rem;">•</span>
                                 <span>20세~64세 의료급여수급권자</span>
                             </li>
                         </ul>
-                        <div class="text-xs text-blue-600 font-medium bg-blue-50 p-2 rounded leading-tight">
+                        <div class="text-xs font-medium" style="color: #2563eb; background: #eff6ff; padding: 0.5rem; border-radius: 0.25rem;">
                             ※ 매 2년마다 1회, 비사무직은 매년 실시
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Check List -->
-                <div class="text-left space-y-6 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
+                <!-- Right List -->
+                <div class="md-text-left js-reveal" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <!-- Item -->
+                    <div class="flex">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
                         <div>
                             <h3 class="font-bold text-lg">위암 검진</h3>
                             <p class="text-sm text-gray-500">만 40세 이상 남녀 (2년 주기)</p>
                         </div>
                     </div>
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
+                    <div class="flex">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
                         <div>
                             <h3 class="font-bold text-lg">대장암 검진</h3>
                             <p class="text-sm text-gray-500">만 50세 이상 남녀 (1년 주기, 분변잠혈)</p>
                         </div>
                     </div>
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
+                    <div class="flex">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
                         <div>
                             <h3 class="font-bold text-lg">간암 검진</h3>
                             <p class="text-sm text-gray-500">만 40세 이상 고위험군 (6개월 주기)</p>
                         </div>
                     </div>
-                    <!-- [추가됨] 유방암 검진 -->
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
+                    <div class="flex">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
                         <div>
                             <h3 class="font-bold text-lg">유방암 검진</h3>
                             <p class="text-sm text-gray-500">만 40세 이상 여성 (2년 주기)</p>
                         </div>
                     </div>
-                    <!-- [추가됨] 자궁경부암 검진 -->
-                    <div class="flex items-start">
-                        <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
+                    <div class="flex">
+                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
                         <div>
                             <h3 class="font-bold text-lg">자궁경부암 검진</h3>
                             <p class="text-sm text-gray-500">만 20세 이상 여성 (2년 주기)</p>
@@ -226,37 +304,36 @@
     </section>
 
     <!-- Section 2: Special Checkups -->
-    <section id="special" class="py-20 bg-gray-50 relative z-10">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                <span class="text-blue-600 font-bold text-sm tracking-widest uppercase">Special Care</span>
-                <h2 class="text-3xl font-bold text-gray-900 mt-2">기본 검진에 ‘안심’을 더하다</h2>
+    <section id="special" class="relative-z10" style="background-color: #f9fafb;">
+        <div class="container">
+            <div class="text-center mb-16 js-reveal" style="margin-bottom: 4rem;">
+                <span class="text-blue font-bold text-sm" style="letter-spacing: 0.1em; text-transform: uppercase;">Special Care</span>
+                <h2 class="section-title" style="margin-top: 0.5rem;">기본 검진에 ‘안심’을 더하다</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="grid md-grid-cols-3 text-center">
                 <!-- Item 1 -->
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                    <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-bed"></i></div>
-                    <h3 class="text-xl font-bold mb-3">수면(의식하진정) 내시경</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">
-                        두려움 없이 한숨 자고 일어난 듯<br>편안하게 검사받으세요.
+                <div class="card js-reveal">
+                    <div class="text-4xl text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-bed"></i></div>
+                    <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">수면(의식하진정) 내시경</h3>
+                    <p class="text-gray-500 text-sm">
+                        CO2 주입으로 복통 완화
                     </p>
                 </div>
                 <!-- Item 2 -->
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 100ms;">
-                    <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-microscope"></i></div>
-                    <h3 class="text-xl font-bold mb-3">대장 내시경 & 용종 제거</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">
+                <div class="card js-reveal" style="transition-delay: 100ms;">
+                    <div class="text-4xl text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-microscope"></i></div>
+                    <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">대장 내시경 & 용종 제거</h3>
+                    <p class="text-gray-500 text-sm">
                         용종 발견 시 즉시 제거 가능합니다.<br>
-                        <span class="text-xs text-gray-400">단, 환자에 따라 다를 수 있습니다.</span>
+                        <span style="font-size: 0.75rem; color: #9ca3af;">단, 환자에 따라 다를 수 있습니다.</span>
                     </p>
                 </div>
                 <!-- Item 3 -->
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
-                    <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-user-doctor"></i></div>
-                    <h3 class="text-xl font-bold mb-3">소화기 정밀 검진 프로그램</h3>
-                    <!-- [수정] 헬리코박터균 -> 종양표지자(혈액 정밀) 검사로 변경 -->
-                    <p class="text-gray-500 text-sm leading-relaxed">
+                <div class="card js-reveal" style="transition-delay: 200ms;">
+                    <div class="text-4xl text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-user-doctor"></i></div>
+                    <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">소화기 정밀 검진 프로그램</h3>
+                    <p class="text-gray-500 text-sm">
                         위/대장 내시경 + 복부 초음파 +<br>종양표지자(혈액 정밀) 검사
                     </p>
                 </div>
@@ -264,102 +341,98 @@
         </div>
     </section>
 
-    <!-- Section 3: Afternoon Endoscopy (Main Focus) -->
-    <section id="afternoon" class="py-20 bg-blue-900 text-white relative z-10">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center gap-12">
+    <!-- Section 3: Afternoon Endoscopy -->
+    <section id="afternoon" class="relative-z10" style="background-color: #1e3a8a; color: white;">
+        <div class="container flex flex-col md-flex-row items-center" style="gap: 3rem;">
+            
+            <div class="md-w-half js-reveal">
+                <span class="text-blue font-bold text-sm" style="background: #facc15; color: #1e3a8a; padding: 0.25rem 0.75rem; border-radius: 0.25rem; display: inline-block; margin-bottom: 1rem;">강력 추천</span>
+                <h2 class="font-bold mb-6" style="line-height: 1.2; margin-bottom: 1.5rem;">
+                    <span class="text-lg" style="display:block; font-weight: 500; margin-bottom: 0.5rem; opacity: 0.9;">밤잠 설치는 오전 내시경 말고,</span>
+                    <span class="text-3xl md-text-4xl" style="font-size: 2.5rem;">
+                        여유로운 <span class="text-yellow">‘오후 내시경’</span><br>
+                        어떠세요?
+                    </span>
+                </h2>
+                <p class="text-lg" style="color: #bfdbfe; margin-bottom: 2rem;">
+                    오후에 오시면 고객님의 시간과 컨디션을<br>
+                    지켜드립니다.
+                </p>
                 
-                <div class="md:w-1/2 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                    <span class="bg-yellow-400 text-blue-900 px-3 py-1 rounded text-xs font-bold mb-4 inline-block">강력 추천</span>
-                    <h2 class="font-bold mb-6 leading-tight">
-                        <!-- [수정] 텍스트 변경: 남들 다 가는 오전 말고 -> 밤잠 설치는 오전 내시경 말고 -->
-                        <span class="block text-lg md:text-xl font-medium mb-2 opacity-90">밤잠 설치는 오전 내시경 말고,</span>
-                        <span class="text-3xl md:text-5xl">
-                            여유로운 <span class="text-yellow-400">‘오후 내시경’</span><br>
-                            어떠세요?
-                        </span>
-                    </h2>
-                    <p class="text-blue-200 mb-8 text-lg leading-relaxed">
-                        오후에 오시면 고객님의 시간과 컨디션을<br>
-                        지켜드립니다.
-                    </p>
-                    
-                    <div class="bg-blue-800/50 p-6 rounded-lg border border-blue-700">
-                        <h4 class="font-bold mb-4 text-lg">🙆‍♀️ 이런 분께 딱입니다!</h4>
-                        <ul class="space-y-3 text-sm md:text-base">
-                            <li class="flex items-center">
-                                <i class="fa-regular fa-moon text-yellow-300 w-6"></i>
-                                약 먹느라 밤새 잠 한숨 못 자고 오시는 분
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fa-solid fa-person-running text-yellow-300 w-6"></i>
-                                북적이는 오전 대기실이 싫으신 분
-                            </li>
-                        </ul>
-                    </div>
+                <div class="bg-blue-50" style="background-color: rgba(30, 64, 175, 0.5); padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1d4ed8;">
+                    <h4 class="font-bold mb-4 text-lg">🙆‍♀️ 이런 분께 딱입니다!</h4>
+                    <ul class="space-y-3" style="font-size: 0.95rem;">
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <i class="fa-regular fa-moon text-yellow" style="width: 1.5rem; margin-right: 0.5rem;"></i>
+                            약 먹느라 밤새 잠 한숨 못 자고 오시는 분
+                        </li>
+                        <li style="display: flex; align-items: center;">
+                            <i class="fa-solid fa-person-running text-yellow" style="width: 1.5rem; margin-right: 0.5rem;"></i>
+                            북적이는 오전 대기실이 싫으신 분
+                        </li>
+                    </ul>
                 </div>
-
-                <div class="md:w-1/2 w-full">
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-4 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 100ms;">
-                            <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">1</div>
-                            <div>
-                                <h4 class="font-bold text-lg">전날 저녁 굶지 마세요</h4>
-                                <!-- [수정] 줄바꿈 적용 -->
-                                <p class="text-sm text-gray-500">오후 검진은 전날 6시경<br>카스테라, 우유 섭취 가능!</p>
-                            </div>
-                        </div>
-                        <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-8 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
-                            <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">2</div>
-                            <div>
-                                <h4 class="font-bold text-lg">새벽 기상 NO</h4>
-                                <p class="text-sm text-gray-500">아침에 일어나 여유롭게 약 복용하세요.</p>
-                            </div>
-                        </div>
-                        <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-4 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 300ms;">
-                            <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">3</div>
-                            <div>
-                                <!-- [수정] 텍스트 변경: 쾌적한 VIP급 환경 -> 더 쾌적한 검진 환경 -->
-                                <h4 class="font-bold text-lg">더 쾌적한 검진 환경</h4>
-                                <p class="text-sm text-gray-500">대기 시간 단축, 의료진과 심도 있는 상담.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
+            <div class="md-w-half" style="width: 100%;">
+                <div class="grid" style="gap: 1rem;">
+                    <!-- Benefit 1 -->
+                    <div class="benefit-card js-reveal" style="transition-delay: 100ms; transform: translateX(0); /* md:translate-x-4 simulation */ margin-left: 1rem;">
+                        <div class="benefit-num">1</div>
+                        <div>
+                            <h4 class="font-bold text-lg">전날 저녁 굶지 마세요</h4>
+                            <p class="text-sm text-gray-500">오후 검진은 전날 18시 경<br>카스테라, 우유 섭취 가능!</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 2 -->
+                    <div class="benefit-card js-reveal" style="transition-delay: 200ms; margin-left: 2rem;">
+                        <div class="benefit-num">2</div>
+                        <div>
+                            <h4 class="font-bold text-lg">새벽 기상 NO</h4>
+                            <p class="text-sm text-gray-500">아침에 일어나 여유롭게 약 복용하세요.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 3 -->
+                    <div class="benefit-card js-reveal" style="transition-delay: 300ms; margin-left: 1rem;">
+                        <div class="benefit-num">3</div>
+                        <div>
+                            <h4 class="font-bold text-lg">더 쾌적한 검진 환경</h4>
+                            <p class="text-sm text-gray-500">대기 시간 단축, 의료진과 심도 있는 상담.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- Section 4: Tips -->
-    <section id="tips" class="py-20 bg-white relative z-10">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-12 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">내시경 약 복용<br>힘들지 않아요!</h2>
+    <section id="tips" class="relative-z10 bg-white">
+        <div class="container text-center">
+            <h2 class="section-title" style="margin-bottom: 3rem;">내시경 약 복용<br>힘들지 않아요!</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-6 bg-gray-50 rounded-xl js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                    <!-- [수정] 아이콘 변경: snowflake(얼음) -> pills(알약) -->
-                    <i class="fa-solid fa-pills text-4xl text-blue-400 mb-4"></i>
-                    <!-- [수정] 텍스트 변경: 물약/알약 선택 가능 -> 장 정결제 물약/알약 처방 -->
+            <div class="grid md-grid-cols-3">
+                <div class="card js-reveal" style="background-color: #f9fafb;">
+                    <i class="fa-solid fa-pills text-4xl text-blue" style="margin-bottom: 1rem;"></i>
                     <h3 class="font-bold text-lg mb-2">장 정결제 물약/알약 처방</h3>
                     <p class="text-sm text-gray-500">
                         물약 또는 알약<br>
                         처방 가능합니다.<br>
-                        <span class="text-xs text-gray-400">단, 비용이 다를 수 있습니다.</span>
+                        <span style="font-size: 0.75rem; color: #9ca3af;">단, 비용이 다를 수 있습니다.</span>
                     </p>
                 </div>
-                <div class="p-6 bg-gray-50 rounded-xl relative overflow-hidden border-2 border-red-100 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 100ms;">
-                    <div class="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-1 font-bold">주의</div>
-                    <i class="fa-solid fa-ban text-4xl text-red-500 mb-4"></i>
+                <div class="card js-reveal" style="background-color: #f9fafb; position: relative; overflow: hidden; border: 2px solid #fee2e2; transition-delay: 100ms;">
+                    <div style="position: absolute; top: 0; right: 0; background: #ef4444; color: white; font-size: 0.75rem; padding: 0.25rem 0.5rem; font-weight: bold;">주의</div>
+                    <i class="fa-solid fa-ban text-4xl" style="color: #ef4444; margin-bottom: 1rem;"></i>
                     <h3 class="font-bold text-lg mb-2">사탕/껌 주의사항</h3>
                     <p class="text-sm text-gray-500">
                         혈액·소변 검사가 있다면<br>
-                        <span class="text-red-600 font-bold">사탕, 껌 절대 금지!</span><br>
+                        <span style="color: #dc2626; font-weight: 700;">사탕, 껌 절대 금지!</span><br>
                         오직 생수만 섭취하세요.
                     </p>
                 </div>
-                <div class="p-6 bg-gray-50 rounded-xl js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
-                    <i class="fa-regular fa-clock text-4xl text-blue-400 mb-4"></i>
+                <div class="card js-reveal" style="background-color: #f9fafb; transition-delay: 200ms;">
+                    <i class="fa-regular fa-clock text-4xl text-blue" style="margin-bottom: 1rem;"></i>
                     <h3 class="font-bold text-lg mb-2">오후 검진의 장점</h3>
                     <p class="text-sm text-gray-500">당일 오전 6시에 복용 시작!<br>밤새 화장실 갈 필요 없어요.</p>
                 </div>
@@ -367,45 +440,41 @@
         </div>
     </section>
 
-    <!-- Footer / CTA -->
-    <footer class="bg-gray-800 text-white py-16 relative z-10">
-        <div class="container mx-auto px-6 text-center js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-            <h2 class="font-bold mb-6 leading-relaxed">
-                <span class="block text-4xl md:text-5xl mb-3">2026년의 시작</span>
-                <span class="text-lg md:text-2xl break-keep">한국건강관리협회 부산동래검진센터와 함께하세요</span>
+    <!-- Footer -->
+    <footer class="relative-z10" style="background-color: #1f2937; color: white; padding: 4rem 0;">
+        <div class="container text-center js-reveal">
+            <h2 class="font-bold mb-6" style="margin-bottom: 1.5rem; line-height: 1.6;">
+                <span class="text-4xl" style="display: block; margin-bottom: 0.75rem;">2026년의 시작</span>
+                <span class="text-xl" style="word-break: keep-all;">한국건강관리협회 부산동래검진센터와 함께하세요</span>
             </h2>
-            <p class="text-gray-400 mb-10">건강은 건강할 때 지키는 것이 가장 좋습니다.</p>
+            <p class="text-gray-500" style="color: #9ca3af; margin-bottom: 2.5rem;">건강은 건강할 때 지키는 것이 가장 좋습니다.</p>
             
-            <!-- [수정] 버튼 그룹 컨테이너 추가 (flex-col:모바일 세로정렬 / md:flex-row:PC 가로정렬) -->
-            <div class="flex flex-col md:flex-row justify-center gap-4 mb-8">
-                <!-- [추가됨] 홈페이지 검진 예약하기 버튼 -->
-                <a href="https://busan.kahp.or.kr/ho/medi/intro.do" target="_blank" class="bg-white text-gray-900 hover:bg-gray-100 font-bold py-4 px-8 rounded-full text-lg shadow-lg imweb-btn transition">
+            <!-- Buttons -->
+            <div class="flex flex-col footer-btns justify-center" style="margin-bottom: 2rem;">
+                <a href="https://busan.kahp.or.kr/ho/medi/intro.do" target="_blank" class="btn btn-white" style="color: #111827;">
                     <i class="fa-solid fa-laptop-medical mr-2"></i> 홈페이지 검진 예약하기
                 </a>
-                
-                <a href="tel:0515536400" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg imweb-btn transition">
+                <a href="tel:0515536400" class="btn btn-blue">
                     <i class="fa-solid fa-phone mr-2"></i> 051-553-6400 전화 예약하기
                 </a>
             </div>
 
-            <!-- [수정] 소셜 미디어 버튼 (텍스트 제거, 원형 아이콘 스타일) -->
-            <div class="flex flex-row justify-center gap-6 mb-12">
-                <!-- [추가됨] 네이버 블로그 버튼 -->
-                <a href="https://blog.naver.com/kahpbusan" target="_blank" class="bg-[#03C75A] text-white hover:opacity-90 w-14 h-14 flex items-center justify-center rounded-full text-2xl shadow-md imweb-btn transition" aria-label="네이버 블로그">
-                    <span class="font-black text-xl font-sans">N</span>
+            <!-- Social Icons -->
+            <div class="flex justify-center" style="gap: 1.5rem; margin-bottom: 3rem;">
+                <a href="https://blog.naver.com/kahpbusan" target="_blank" class="social-btn btn-naver" aria-label="네이버 블로그">
+                    <span style="font-weight: 900; font-family: sans-serif;">N</span>
                 </a>
-                <a href="https://pf.kakao.com/_hxlwFu/" target="_blank" class="bg-[#FEE500] text-[#3c1e1e] hover:opacity-90 w-14 h-14 flex items-center justify-center rounded-full text-2xl shadow-md imweb-btn transition" aria-label="카카오채널">
+                <a href="https://pf.kakao.com/_hxlwFu/" target="_blank" class="social-btn btn-kakao" aria-label="카카오채널">
                     <i class="fa-solid fa-comment"></i>
                 </a>
-                <a href="https://www.instagram.com/kahp_busan/" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 w-14 h-14 flex items-center justify-center rounded-full text-2xl shadow-md imweb-btn transition" aria-label="인스타그램">
+                <a href="https://www.instagram.com/kahp_busan/" target="_blank" class="social-btn btn-insta" aria-label="인스타그램">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
             </div>
 
-            <div class="border-t border-gray-700 pt-8 text-sm text-gray-500">
-                <p class="font-bold text-white mb-2">한국건강관리협회 부산동래검진센터</p>
-                <p class="mb-2">원장: 신세권 | 본부장: 김희철 | 주소: 부산광역시 동래구 충렬대로 145 (온천동)</p>
-                <!-- [수정] 영문 명칭 통일: Dongbu(동부) -> Dongnae(동래) -->
+            <div style="border-top: 1px solid #374151; padding-top: 2rem; font-size: 0.875rem; color: #6b7280;">
+                <p style="font-weight: 700; color: white; margin-bottom: 0.5rem;">한국건강관리협회 부산동래검진센터</p>
+                <p style="margin-bottom: 0.5rem;">원장: 신세권 | 본부장: 김희철 | 주소: 부산광역시 동래구 충렬대로 145 (온천동)</p>
                 <p>&copy; 2025 KAHP Busan Dongnae. All rights reserved.</p>
             </div>
         </div>
@@ -413,7 +482,7 @@
 
     <!-- Scripts -->
     <script>
-        // 1. Anchor Smooth Scroll
+        // 1. Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -423,7 +492,7 @@
             });
         });
 
-        // 2. Scroll Reveal Animation
+        // 2. Scroll Reveal
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -433,7 +502,8 @@
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    entry.target.classList.remove('opacity-0', 'translate-y-8'); // For Tailwind logic compatibility if classes remain
+                    entry.target.classList.add('active'); // For custom CSS
                     observer.unobserve(entry.target);
                 }
             });
@@ -443,7 +513,7 @@
             observer.observe(el);
         });
 
-        // 3. [UPDATED] Mobile Sticky Hero + PC Zoom Effect
+        // 3. Hero Scroll Effect (Mobile Sticky + PC Zoom)
         const heroBg = document.querySelector('.hero-bg');
         const heroWrapper = document.querySelector('.mobile-scroll-wrapper');
 
@@ -453,9 +523,9 @@
             const vw = window.innerWidth;
 
             if (window.innerWidth <= 768) {
-                // [Mobile] Sticky Zoom-Out (Existing)
+                // Mobile: Sticky Zoom-Out
                 const screenRatio = vh / vw; 
-                const startWidthPercent = screenRatio * 177; 
+                const startWidthPercent = screenRatio * 177; // Aspect Ratio 16:9 approx
                 const endWidthPercent = 100;
                 const maxScroll = heroWrapper.offsetHeight - vh;
                 
@@ -469,8 +539,7 @@
                 heroBg.style.backgroundPosition = 'center top'; 
                 
             } else {
-                // [PC] Scroll Zoom-Out (150% -> 100%)
-                // 스크롤이 진행될수록 이미지가 150%에서 100%로 작아짐
+                // PC: Scroll Zoom-Out (150% -> 100%)
                 let pcProgress = scrollY / vh; 
                 let pcSize = 150 - (pcProgress * 50);
                 
@@ -481,14 +550,12 @@
             }
         }
 
-        // Use requestAnimationFrame for smoother performance
         window.addEventListener('scroll', () => {
             window.requestAnimationFrame(handleHeroScroll);
         });
 
         window.addEventListener('load', handleHeroScroll);
         window.addEventListener('resize', handleHeroScroll);
-
     </script>
 </body>
 </html>
