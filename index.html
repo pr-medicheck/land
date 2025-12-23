@@ -270,10 +270,11 @@
                 <div class="md:w-1/2 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                     <span class="bg-yellow-400 text-blue-900 px-3 py-1 rounded text-xs font-bold mb-4 inline-block">강력 추천</span>
                     <h2 class="font-bold mb-6 leading-tight">
-                        <span class="block text-lg md:text-xl font-medium mb-2 opacity-90">남들 다 가는 오전 말고,</span>
+                        <!-- [수정] 텍스트 변경: 남들 다 가는 오전 말고 -> 밤잠 설치는 오전 내시경 말고 -->
+                        <span class="block text-lg md:text-xl font-medium mb-2 opacity-90">밤잠 설치는 오전 내시경 말고,</span>
                         <span class="text-3xl md:text-5xl">
                             여유로운 <span class="text-yellow-400">‘오후 내시경’</span><br>
-                            어때요?
+                            어떠세요?
                         </span>
                     </h2>
                     <p class="text-blue-200 mb-8 text-lg leading-relaxed">
@@ -290,7 +291,7 @@
                             </li>
                             <li class="flex items-center">
                                 <i class="fa-solid fa-person-running text-yellow-300 w-6"></i>
-                                북적이는 오전 대기실이 전쟁터 같아 싫으신 분
+                                북적이는 오전 대기실이 싫으신 분
                             </li>
                         </ul>
                     </div>
@@ -381,6 +382,10 @@
 
             <!-- [수정] 소셜 미디어 버튼 (텍스트 제거, 원형 아이콘 스타일) -->
             <div class="flex flex-row justify-center gap-6 mb-12">
+                <!-- [추가됨] 네이버 블로그 버튼 -->
+                <a href="https://blog.naver.com/kahpbusan" target="_blank" class="bg-[#03C75A] text-white hover:opacity-90 w-14 h-14 flex items-center justify-center rounded-full text-2xl shadow-md imweb-btn transition" aria-label="네이버 블로그">
+                    <span class="font-black text-xl font-sans">N</span>
+                </a>
                 <a href="https://pf.kakao.com/_hxlwFu/" target="_blank" class="bg-[#FEE500] text-[#3c1e1e] hover:opacity-90 w-14 h-14 flex items-center justify-center rounded-full text-2xl shadow-md imweb-btn transition" aria-label="카카오채널">
                     <i class="fa-solid fa-comment"></i>
                 </a>
@@ -456,10 +461,10 @@
                 heroBg.style.backgroundPosition = 'center top'; 
                 
             } else {
-                // [PC] Scroll Zoom-Out (200% -> 100%)
-                // 스크롤이 진행될수록 이미지가 200%에서 100%로 작아짐
+                // [PC] Scroll Zoom-Out (150% -> 100%)
+                // 스크롤이 진행될수록 이미지가 150%에서 100%로 작아짐
                 let pcProgress = scrollY / vh; 
-                let pcSize = 200 - (pcProgress * 100);
+                let pcSize = 150 - (pcProgress * 50);
                 
                 if (pcSize < 100) pcSize = 100;
                 
