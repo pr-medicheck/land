@@ -21,12 +21,12 @@
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; }
         .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
-                        url('2026 풍선.png'),
-                        url('https://images.unsplash.com/photo-1530103862676-de3c9da59af7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            /* [수정] 파란색 배경 및 불필요한 그라데이션/예비 이미지 제거 */
+            /* 오직 '2026 풍선.png'와 어두운 오버레이만 적용 */
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                        url('2026 풍선.png');
             
-            /* [수정] 파란색 배경 제거 */
-            /* background-color: #60a5fa; */
+            background-color: #ffffff; /* 혹시 이미지가 없으면 흰색 배경 */
             
             /* [기본 설정: PC] cover로 꽉 채움 */
             background-size: cover;
@@ -37,9 +37,9 @@
 
         /* [모바일 전용 설정] */
         @media (max-width: 768px) {
-            /* 스크롤 거리를 확보하기 위한 래퍼 (JS로 높이 제어할 수도 있음) */
+            /* 스크롤 거리를 확보하기 위한 래퍼 */
             .mobile-scroll-wrapper {
-                height: 250vh; /* 스크롤 할 거리 (길수록 애니메이션이 천천히 진행됨) */
+                height: 200vh; /* 스크롤 길이 조정 (너무 길지 않게) */
                 position: relative;
             }
 
@@ -50,9 +50,12 @@
                 height: 100vh; /* 화면 높이만큼 차지 */
                 
                 background-attachment: scroll; 
+                /* 초기: 세로(height) 100vh에 맞춤 -> 이미지가 크게 보임 (Zoom-in 상태) */
+                background-size: auto 100vh;   
                 background-position: center top; 
-                /* 초기 사이즈는 JS에서 계산하여 세로 100%로 설정됨 */
-                z-index: 10; /* 다른 콘텐츠보다 아래, 배경보다는 위에 */
+                
+                /* [중요] 이미지가 사라지지 않고 다음 섹션이 덮고 올라오도록 z-index 설정 */
+                z-index: 0; 
             }
         }
 
@@ -125,7 +128,8 @@
     </div>
 
     <!-- Section 1: Target Audience (Check 1) -->
-    <section id="target" class="py-20 bg-white relative z-20"> <!-- z-index 추가하여 배경 위로 올라오게 함 -->
+    <!-- z-index를 10으로 설정하여 Sticky 배경(z-index 0) 위로 자연스럽게 덮이도록 함 -->
+    <section id="target" class="py-20 bg-white relative z-10"> 
         <div class="container mx-auto px-6 text-center">
             <div class="js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">2026년,<br>나는 검진 대상자일까?</h2>
@@ -176,7 +180,7 @@
     </section>
 
     <!-- Section 2: Special Checkups -->
-    <section id="special" class="py-20 bg-gray-50 relative z-20">
+    <section id="special" class="py-20 bg-gray-50 relative z-10">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                 <span class="text-blue-600 font-bold text-sm tracking-widest uppercase">Special Care</span>
@@ -210,7 +214,7 @@
     </section>
 
     <!-- Section 3: Afternoon Endoscopy (Main Focus) -->
-    <section id="afternoon" class="py-20 bg-blue-900 text-white relative z-20">
+    <section id="afternoon" class="py-20 bg-blue-900 text-white relative z-10">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 
@@ -276,7 +280,7 @@
     </section>
 
     <!-- Section 4: Tips -->
-    <section id="tips" class="py-20 bg-white relative z-20">
+    <section id="tips" class="py-20 bg-white relative z-10">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold text-gray-900 mb-12 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">내시경 약 복용<br>힘들지 않아요!</h2>
             
@@ -306,7 +310,7 @@
     </section>
 
     <!-- Footer / CTA -->
-    <footer class="bg-gray-800 text-white py-16 relative z-20">
+    <footer class="bg-gray-800 text-white py-16 relative z-10">
         <div class="container mx-auto px-6 text-center js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
             <h2 class="font-bold mb-6 leading-relaxed">
                 <span class="block text-4xl md:text-5xl mb-3">2026년의 시작</span>
@@ -378,7 +382,6 @@
                 const endWidthPercent = 100;
 
                 // 스크롤 범위 (wrapper 높이 - 뷰포트 높이)
-                // 이 거리만큼 스크롤하는 동안 애니메이션이 진행됨
                 const maxScroll = heroWrapper.offsetHeight - vh;
                 
                 // 진행률 (0 ~ 1)
