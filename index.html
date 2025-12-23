@@ -30,13 +30,15 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: scroll;
+            background-attachment: fixed; /* PC에서는 패럴랙스 효과 */
         }
 
-        /* [모바일 초기 설정] CSS에서는 우선 cover로 두되, JS로 제어합니다. */
+        /* [모바일 설정] JS 로딩 전 초기값: 세로 100% 맞춤 */
         @media (max-width: 768px) {
             .hero-bg {
-                background-position: center top; /* 모바일에서는 상단 중심 */
+                background-attachment: scroll; /* 모바일 성능 최적화 */
+                background-size: auto 100vh;   /* 초기: 세로 꽉 채움 */
+                background-position: center top;
             }
         }
 
@@ -48,7 +50,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        /* 스크롤 애니메이션: JS로 클래스 토글 방식 사용 (CSS 충돌 방지) */
+        /* 스크롤 애니메이션: JS로 클래스 토글 방식 사용 */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -82,7 +84,6 @@
 
     <!-- Hero Section -->
     <section class="hero-bg h-screen flex items-center justify-center text-center text-white pt-16">
-        <!-- js-reveal 클래스와 초기 상태(opacity-0 translate-y-8) 추가 -->
         <div class="container mx-auto px-6 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
             <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm mb-4 border border-white/30">
                 2026년 신년 맞이 건강 캠페인
@@ -116,7 +117,6 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
-                <!-- Left: Big Number -->
                 <div class="bg-blue-50 rounded-2xl p-10 shadow-sm border border-blue-100 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                     <p class="text-xl text-blue-600 font-bold mb-2">올해의 검진대상</p>
                     <div class="text-6xl font-black text-blue-900 mb-4">짝수년생</div>
@@ -126,7 +126,6 @@
                     </p>
                 </div>
 
-                <!-- Right: Check List -->
                 <div class="text-left space-y-6 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                     <div class="flex items-start">
                         <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
@@ -169,7 +168,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <!-- Item 1 -->
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-bed"></i></div>
                     <h3 class="text-xl font-bold mb-3">수면(진정) 내시경</h3>
@@ -177,7 +175,6 @@
                         두려움 없이 한숨 자고 일어난 듯<br>편안하게 검사받으세요.
                     </p>
                 </div>
-                <!-- Item 2 -->
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 100ms;">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-microscope"></i></div>
                     <h3 class="text-xl font-bold mb-3">대장 내시경 (정밀)</h3>
@@ -185,7 +182,6 @@
                         분변 검사 없이 바로 내부 관찰,<br>용종 발견 시 즉시 제거 가능합니다.
                     </p>
                 </div>
-                <!-- Item 3 -->
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-user-doctor"></i></div>
                     <h3 class="text-xl font-bold mb-3">소화기 정밀 세트</h3>
@@ -205,9 +201,7 @@
                 <div class="md:w-1/2 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                     <span class="bg-yellow-400 text-blue-900 px-3 py-1 rounded text-xs font-bold mb-4 inline-block">강력 추천</span>
                     <h2 class="font-bold mb-6 leading-tight">
-                        <!-- 작게 처리 -->
                         <span class="block text-lg md:text-xl font-medium mb-2 opacity-90">남들 다 가는 오전 말고,</span>
-                        <!-- 크게 강조 -->
                         <span class="text-3xl md:text-5xl">
                             여유로운 <span class="text-yellow-400">‘오후 내시경’</span><br>
                             어때요?
@@ -237,7 +231,6 @@
 
                 <div class="md:w-1/2 w-full">
                     <div class="grid grid-cols-1 gap-4">
-                        <!-- Benefit 1: md:translate-x-4로 약간 우측 이동 -->
                         <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-4 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 100ms;">
                             <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">1</div>
                             <div>
@@ -245,7 +238,6 @@
                                 <p class="text-sm text-gray-500">오후 검진은 전날 6시경 가벼운 죽 식사 가능!</p>
                             </div>
                         </div>
-                        <!-- Benefit 2: md:translate-x-8로 더 많이 우측 이동 (지그재그 효과) -->
                         <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-8 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
                             <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">2</div>
                             <div>
@@ -253,7 +245,6 @@
                                 <p class="text-sm text-gray-500">아침에 일어나 여유롭게 약 복용하세요.</p>
                             </div>
                         </div>
-                        <!-- Benefit 3: md:translate-x-4로 다시 약간 우측 이동 -->
                         <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-4 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 300ms;">
                             <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">3</div>
                             <div>
@@ -335,14 +326,14 @@
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.1 // 요소의 10%가 보이면 애니메이션 시작
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.remove('opacity-0', 'translate-y-8');
-                    observer.unobserve(entry.target); // 한 번만 실행
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -351,35 +342,48 @@
             observer.observe(el);
         });
 
-        // 3. [NEW] Mobile Hero Background Scroll Zoom Effect
-        // 모바일(폭 768px 이하)에서만 작동: 스크롤 내리면 배경 이미지가 100% -> Cover 크기로 확대됨
+        // 3. [UPDATED] Mobile Hero Background Scroll Zoom-OUT Effect
+        // 모바일(폭 768px 이하)에서만 작동
         const heroBg = document.querySelector('.hero-bg');
 
         function handleMobileHeroScroll() {
             if (window.innerWidth <= 768) {
                 const scrollY = window.scrollY;
-                // [수정] 스크롤 내릴 때 작아지는 효과 (Zoom-out)
-                // 초기: 100% (꽉 참) -> 스크롤 할수록 줄어듦 (여백 생김 or 멀어짐)
-                const initialScale = 100; 
-                const zoomFactor = 0.1; 
-                let newSize = initialScale - (scrollY * zoomFactor);
+                const vh = window.innerHeight;
+                const vw = window.innerWidth;
+                const screenRatio = vh / vw; 
                 
-                // 너무 작아지지 않게 제한 (예: 70%까지만 축소)
-                if (newSize < 70) newSize = 70;
-
-                heroBg.style.backgroundSize = `${newSize}% auto`;
+                // [설정] 초기 상태(Top): 세로 100% 꽉 채움 (auto 100vh)
+                // 가로형 이미지를 세로형 화면에 세로 100%로 맞추면 가로 너비는 약 200%~300%가 됨 (Zoom-in 상태)
+                // 이미지 비율을 대략 1.77(16:9)로 가정 시 초기 가로 % 계산:
+                const startWidthPercent = screenRatio * 177; 
+                
+                // [설정] 최종 상태(Scroll Down): 가로 100% (화면 너비에 딱 맞음)
+                const endWidthPercent = 100;
+                
+                // 스크롤 감도 조절 (숫자가 클수록 빨리 줄어듦)
+                const zoomSpeed = 0.3; 
+                
+                // 스크롤 내릴수록 %가 줄어듦 (Zoom-out)
+                let currentWidth = startWidthPercent - (scrollY * zoomSpeed);
+                
+                // 100%보다 작아지지 않게 제한 (최종 상태 고정)
+                if (currentWidth < endWidthPercent) currentWidth = endWidthPercent;
+                
+                heroBg.style.backgroundSize = `${currentWidth}% auto`;
+                heroBg.style.backgroundPosition = 'center top'; 
+                
             } else {
                 // PC 등 큰 화면에서는 CSS 기본값(cover) 사용
                 heroBg.style.backgroundSize = ''; 
+                heroBg.style.backgroundPosition = '';
             }
         }
 
-        // 스크롤 이벤트에 연결 (requestAnimationFrame으로 성능 최적화)
         window.addEventListener('scroll', () => {
             window.requestAnimationFrame(handleMobileHeroScroll);
         });
 
-        // 초기 로드 및 리사이즈 시 실행
         window.addEventListener('load', handleMobileHeroScroll);
         window.addEventListener('resize', handleMobileHeroScroll);
 
