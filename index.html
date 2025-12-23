@@ -254,8 +254,9 @@
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-user-doctor"></i></div>
                     <h3 class="text-xl font-bold mb-3">소화기 정밀 검진 프로그램</h3>
+                    <!-- [수정] 헬리코박터균 -> 종양표지자(혈액 정밀) 검사로 변경 -->
                     <p class="text-gray-500 text-sm leading-relaxed">
-                        위/대장 내시경 + 복부 초음파 +<br>헬리코박터균 검사를 한 번에!
+                        위/대장 내시경 + 복부 초음파 +<br>종양표지자(혈액 정밀) 검사
                     </p>
                 </div>
             </div>
@@ -336,9 +337,15 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="p-6 bg-gray-50 rounded-xl js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                    <i class="fa-solid fa-snowflake text-4xl text-blue-400 mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">차갑게 드세요</h3>
-                    <p class="text-sm text-gray-500">특유의 맛과 냄새가 덜 느껴져<br>거부감이 확 줄어듭니다.</p>
+                    <!-- [수정] 아이콘 변경: snowflake(얼음) -> pills(알약) -->
+                    <i class="fa-solid fa-pills text-4xl text-blue-400 mb-4"></i>
+                    <!-- [수정] 텍스트 변경: 물약/알약 선택 가능 -> 장 정결제 물약/알약 처방 -->
+                    <h3 class="font-bold text-lg mb-2">장 정결제 물약/알약 처방</h3>
+                    <p class="text-sm text-gray-500">
+                        물약 또는 알약<br>
+                        처방 가능합니다.<br>
+                        <span class="text-xs text-gray-400">단, 비용이 다를 수 있습니다.</span>
+                    </p>
                 </div>
                 <div class="p-6 bg-gray-50 rounded-xl relative overflow-hidden border-2 border-red-100 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 100ms;">
                     <div class="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-1 font-bold">주의</div>
