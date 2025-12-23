@@ -21,16 +21,15 @@
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; }
         .hero-bg {
-            /* [수정] 파란색 배경 및 불필요한 그라데이션/예비 이미지 제거 */
-            /* 오직 '2026 풍선.png'와 어두운 오버레이만 적용 */
-            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
-                        url('2026 풍선.png');
+            /* [수정] 텍스트 가독성을 위해 오버레이 농도를 0.2 -> 0.4로 진하게 변경 */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://github.com/pr-medicheck/land/blob/main/2026%20%ED%92%8D%EC%84%A0.png?raw=true');
             
-            background-color: #ffffff; /* 혹시 이미지가 없으면 흰색 배경 */
+            background-color: #ffffff; /* 흰색 배경 */
             
-            /* [기본 설정: PC] cover로 꽉 채움 */
+            /* [PC 초기 설정] JS가 로드되기 전에는 cover로 보여줌 */
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed; /* PC에서는 패럴랙스 효과 */
         }
@@ -39,7 +38,7 @@
         @media (max-width: 768px) {
             /* 스크롤 거리를 확보하기 위한 래퍼 */
             .mobile-scroll-wrapper {
-                height: 200vh; /* 스크롤 길이 조정 (너무 길지 않게) */
+                height: 200vh; /* 스크롤 길이 조정 */
                 position: relative;
             }
 
@@ -103,23 +102,27 @@
     <div class="mobile-scroll-wrapper">
         <section class="hero-bg h-screen flex items-center justify-center text-center text-white pt-16">
             <div class="container mx-auto px-6 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm mb-4 border border-white/30">
-                    2026년 신년 맞이 건강 캠페인
+                <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm mb-4 border border-white/30 drop-shadow-md">
+                    신년 맞이 건강 캠페인
                 </span>
-                <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                <!-- [수정] 텍스트에 그림자(drop-shadow-xl) 추가하여 가독성 강화 -->
+                <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight drop-shadow-xl">
                     2026년<br>
                     <span class="text-yellow-400">가볍게 시작하기</span>
                 </h1>
-                <p class="text-lg md:text-xl mb-10 text-gray-100 max-w-2xl mx-auto font-light leading-relaxed">
+                <p class="text-lg md:text-xl mb-10 text-gray-100 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
                     새해 다짐 1순위는 건강입니다.<br>
                     소화기 정밀 검사와 여유로운 오후 내시경으로<br>
                     몸과 마음이 가벼운 한 해를 시작하세요.
                 </p>
                 <div class="flex flex-col md:flex-row justify-center gap-4">
-                    <a href="#target" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg imweb-btn">
-                        내 검진 대상 확인하기
+                    <!-- [수정] 버튼 텍스트 변경: 홈페이지 검진 예약하기 -> 검진 대상자 확인하기 -->
+                    <!-- [수정] 링크 변경: 외부 링크 -> 내부 섹션(#target)으로 이동하도록 변경 -->
+                    <a href="#target" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg imweb-btn shadow-lg">
+                        검진 대상자 확인하기
                     </a>
-                    <a href="tel:0515536400" class="bg-yellow-500 text-white px-8 py-4 rounded-lg font-bold text-lg imweb-btn">
+                    <!-- [수정] 전화 예약 버튼 색상: 노란색(bg-yellow-500) -> 파란색(bg-blue-600)으로 변경 -->
+                    <a href="tel:0515536400" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg imweb-btn shadow-lg">
                         전화로 간편 예약하기
                     </a>
                 </div>
@@ -137,15 +140,37 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
-                <div class="bg-blue-50 rounded-2xl p-10 shadow-sm border border-blue-100 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                    <p class="text-xl text-blue-600 font-bold mb-2">올해의 검진대상</p>
+                <!-- Left: Big Number & General Checkup Info -->
+                <div class="bg-blue-50 rounded-2xl p-8 shadow-sm border border-blue-100 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+                    <p class="text-xl text-blue-600 font-bold mb-2">2026년 검진대상</p>
                     <div class="text-6xl font-black text-blue-900 mb-4">짝수년생</div>
-                    <p class="text-gray-600">
+                    <p class="text-gray-600 mb-6">
                         출생연도 끝자리가<br>
                         <strong>0, 2, 4, 6, 8</strong>인 분들
                     </p>
+
+                    <!-- [추가됨] 일반건강검진 대상자 상세 안내 카드 -->
+                    <div class="bg-white rounded-xl p-5 text-left shadow-sm border border-blue-100">
+                        <h4 class="font-bold text-blue-800 mb-3 border-b pb-2 border-blue-100 flex items-center">
+                            <i class="fa-solid fa-clipboard-list mr-2"></i> 일반건강검진 대상자는?
+                        </h4>
+                        <ul class="text-sm text-gray-600 space-y-2 mb-3">
+                            <li class="flex items-start">
+                                <span class="text-blue-400 mr-2">•</span>
+                                <span class="leading-tight">지역세대주, 직장가입자,<br>20세 이상 세대원과 피부양자</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-400 mr-2">•</span>
+                                <span>20세~64세 의료급여수급권자</span>
+                            </li>
+                        </ul>
+                        <div class="text-xs text-blue-600 font-medium bg-blue-50 p-2 rounded leading-tight">
+                            ※ 매 2년마다 1회, 비사무직은 매년 실시
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Right: Check List -->
                 <div class="text-left space-y-6 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                     <div class="flex items-start">
                         <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
@@ -174,6 +199,26 @@
                             <p class="text-sm text-gray-500">만 40세 이상 고위험군 (6개월 주기)</p>
                         </div>
                     </div>
+                    <!-- [추가됨] 유방암 검진 -->
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">유방암 검진</h3>
+                            <p class="text-sm text-gray-500">만 40세 이상 여성 (2년 주기)</p>
+                        </div>
+                    </div>
+                    <!-- [추가됨] 자궁경부암 검진 -->
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">자궁경부암 검진</h3>
+                            <p class="text-sm text-gray-500">만 20세 이상 여성 (2년 주기)</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -188,23 +233,27 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <!-- Item 1 -->
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-bed"></i></div>
-                    <h3 class="text-xl font-bold mb-3">수면(진정) 내시경</h3>
+                    <h3 class="text-xl font-bold mb-3">수면(의식하진정) 내시경</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">
                         두려움 없이 한숨 자고 일어난 듯<br>편안하게 검사받으세요.
                     </p>
                 </div>
+                <!-- Item 2 -->
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 100ms;">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-microscope"></i></div>
-                    <h3 class="text-xl font-bold mb-3">대장 내시경 (정밀)</h3>
+                    <h3 class="text-xl font-bold mb-3">대장 내시경 & 용종 제거</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">
-                        분변 검사 없이 바로 내부 관찰,<br>용종 발견 시 즉시 제거 가능합니다.
+                        용종 발견 시 즉시 제거 가능합니다.<br>
+                        <span class="text-xs text-gray-400">단, 환자에 따라 다를 수 있습니다.</span>
                     </p>
                 </div>
+                <!-- Item 3 -->
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-user-doctor"></i></div>
-                    <h3 class="text-xl font-bold mb-3">소화기 정밀 세트</h3>
+                    <h3 class="text-xl font-bold mb-3">소화기 정밀 검진 프로그램</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">
                         위/대장 내시경 + 복부 초음파 +<br>헬리코박터균 검사를 한 번에!
                     </p>
@@ -228,8 +277,6 @@
                         </span>
                     </h2>
                     <p class="text-blue-200 mb-8 text-lg leading-relaxed">
-                        “꼭두새벽부터 일어나야 한다?”<br>
-                        편견을 버리세요.<br>
                         오후에 오시면 고객님의 시간과 컨디션을<br>
                         지켜드립니다.
                     </p>
@@ -255,7 +302,8 @@
                             <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">1</div>
                             <div>
                                 <h4 class="font-bold text-lg">전날 저녁 굶지 마세요</h4>
-                                <p class="text-sm text-gray-500">오후 검진은 전날 6시경 가벼운 죽 식사 가능!</p>
+                                <!-- [수정] 줄바꿈 적용 -->
+                                <p class="text-sm text-gray-500">오후 검진은 전날 6시경<br>카스테라, 우유 섭취 가능!</p>
                             </div>
                         </div>
                         <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-8 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
@@ -268,7 +316,8 @@
                         <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-4 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 300ms;">
                             <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">3</div>
                             <div>
-                                <h4 class="font-bold text-lg">쾌적한 VIP급 환경</h4>
+                                <!-- [수정] 텍스트 변경: 쾌적한 VIP급 환경 -> 더 쾌적한 검진 환경 -->
+                                <h4 class="font-bold text-lg">더 쾌적한 검진 환경</h4>
                                 <p class="text-sm text-gray-500">대기 시간 단축, 의료진과 심도 있는 상담.</p>
                             </div>
                         </div>
@@ -318,14 +367,33 @@
             </h2>
             <p class="text-gray-400 mb-10">건강은 건강할 때 지키는 것이 가장 좋습니다.</p>
             
-            <a href="tel:0515536400" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg imweb-btn mb-12">
-                <i class="fa-solid fa-phone mr-2"></i> 051-553-6400 전화 예약하기
-            </a>
+            <!-- [수정] 버튼 그룹 컨테이너 추가 (flex-col:모바일 세로정렬 / md:flex-row:PC 가로정렬) -->
+            <div class="flex flex-col md:flex-row justify-center gap-4 mb-8">
+                <!-- [추가됨] 홈페이지 검진 예약하기 버튼 -->
+                <a href="https://busan.kahp.or.kr/ho/medi/intro.do" target="_blank" class="bg-white text-gray-900 hover:bg-gray-100 font-bold py-4 px-8 rounded-full text-lg shadow-lg imweb-btn transition">
+                    <i class="fa-solid fa-laptop-medical mr-2"></i> 홈페이지 검진 예약하기
+                </a>
+                
+                <a href="tel:0515536400" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg imweb-btn transition">
+                    <i class="fa-solid fa-phone mr-2"></i> 051-553-6400 전화 예약하기
+                </a>
+            </div>
+
+            <!-- [수정] 소셜 미디어 버튼 (텍스트 제거, 원형 아이콘 스타일) -->
+            <div class="flex flex-row justify-center gap-6 mb-12">
+                <a href="https://pf.kakao.com/_hxlwFu/" target="_blank" class="bg-[#FEE500] text-[#3c1e1e] hover:opacity-90 w-14 h-14 flex items-center justify-center rounded-full text-2xl shadow-md imweb-btn transition" aria-label="카카오채널">
+                    <i class="fa-solid fa-comment"></i>
+                </a>
+                <a href="https://www.instagram.com/kahp_busan/" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 w-14 h-14 flex items-center justify-center rounded-full text-2xl shadow-md imweb-btn transition" aria-label="인스타그램">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
 
             <div class="border-t border-gray-700 pt-8 text-sm text-gray-500">
                 <p class="font-bold text-white mb-2">한국건강관리협회 부산동래검진센터</p>
                 <p class="mb-2">원장: 신세권 | 본부장: 김희철 | 주소: 부산광역시 동래구 충렬대로 145 (온천동)</p>
-                <p>&copy; 2025 KAHP Busan Dongbu. All rights reserved.</p>
+                <!-- [수정] 영문 명칭 통일: Dongbu(동부) -> Dongnae(동래) -->
+                <p>&copy; 2025 KAHP Busan Dongnae. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -362,53 +430,51 @@
             observer.observe(el);
         });
 
-        // 3. [UPDATED] Mobile Sticky Hero + Zoom-Out Effect
+        // 3. [UPDATED] Mobile Sticky Hero + PC Zoom Effect
         const heroBg = document.querySelector('.hero-bg');
         const heroWrapper = document.querySelector('.mobile-scroll-wrapper');
 
-        function handleMobileHeroScroll() {
-            // 768px 이하 모바일 환경에서만 작동
-            if (window.innerWidth <= 768) {
-                const scrollY = window.scrollY;
-                const vh = window.innerHeight;
-                const vw = window.innerWidth;
-                const screenRatio = vh / vw; 
-                
-                // [설정] 초기 상태(Top): 세로 100% 꽉 채움 (세로형 화면에서 이미지 확대됨)
-                // 16:9 이미지 비율(1.77) 가정 시 가로 % 계산
-                const startWidthPercent = screenRatio * 177; 
-                
-                // [설정] 최종 상태(Scroll End): 가로 100%
-                const endWidthPercent = 100;
+        function handleHeroScroll() {
+            const scrollY = window.scrollY;
+            const vh = window.innerHeight;
+            const vw = window.innerWidth;
 
-                // 스크롤 범위 (wrapper 높이 - 뷰포트 높이)
+            if (window.innerWidth <= 768) {
+                // [Mobile] Sticky Zoom-Out (Existing)
+                const screenRatio = vh / vw; 
+                const startWidthPercent = screenRatio * 177; 
+                const endWidthPercent = 100;
                 const maxScroll = heroWrapper.offsetHeight - vh;
                 
-                // 진행률 (0 ~ 1)
                 let progress = scrollY / maxScroll;
                 if (progress > 1) progress = 1;
                 if (progress < 0) progress = 0;
 
-                // 진행률에 따라 너비 계산 (Start -> End)
                 let currentWidth = startWidthPercent - ((startWidthPercent - endWidthPercent) * progress);
                 
-                // CSS 적용
                 heroBg.style.backgroundSize = `${currentWidth}% auto`;
                 heroBg.style.backgroundPosition = 'center top'; 
                 
             } else {
-                // PC 등 큰 화면에서는 CSS 기본값 사용
-                heroBg.style.backgroundSize = ''; 
-                heroBg.style.backgroundPosition = '';
+                // [PC] Scroll Zoom-Out (200% -> 100%)
+                // 스크롤이 진행될수록 이미지가 200%에서 100%로 작아짐
+                let pcProgress = scrollY / vh; 
+                let pcSize = 200 - (pcProgress * 100);
+                
+                if (pcSize < 100) pcSize = 100;
+                
+                heroBg.style.backgroundSize = `${pcSize}% auto`;
+                heroBg.style.backgroundPosition = 'center center'; 
             }
         }
 
+        // Use requestAnimationFrame for smoother performance
         window.addEventListener('scroll', () => {
-            window.requestAnimationFrame(handleMobileHeroScroll);
+            window.requestAnimationFrame(handleHeroScroll);
         });
 
-        window.addEventListener('load', handleMobileHeroScroll);
-        window.addEventListener('resize', handleMobileHeroScroll);
+        window.addEventListener('load', handleHeroScroll);
+        window.addEventListener('resize', handleHeroScroll);
 
     </script>
 </body>
