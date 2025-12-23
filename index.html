@@ -358,14 +358,14 @@
         function handleMobileHeroScroll() {
             if (window.innerWidth <= 768) {
                 const scrollY = window.scrollY;
-                // 초기 크기 100% (가로 꽉 참, 세로 여백) -> 스크롤할수록 확대
-                // 100%에서 시작하여 스크롤 1px당 0.2%씩 커짐
+                // [수정] 스크롤 내릴 때 작아지는 효과 (Zoom-out)
+                // 초기: 100% (꽉 참) -> 스크롤 할수록 줄어듦 (여백 생김 or 멀어짐)
                 const initialScale = 100; 
-                const zoomFactor = 0.2; 
-                let newSize = initialScale + (scrollY * zoomFactor);
+                const zoomFactor = 0.1; 
+                let newSize = initialScale - (scrollY * zoomFactor);
                 
-                // 너무 커지지 않게 제한 (선택 사항, 여기선 250%까지)
-                if (newSize > 250) newSize = 250;
+                // 너무 작아지지 않게 제한 (예: 70%까지만 축소)
+                if (newSize < 70) newSize = 70;
 
                 heroBg.style.backgroundSize = `${newSize}% auto`;
             } else {
