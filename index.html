@@ -8,7 +8,7 @@
     <!-- [SNS 공유용 오픈 그래프(Open Graph) 설정] -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="2026년, 가볍게 시작하기 - 건협부산동래">
-    <meta property="og:description" content="2026년 검진 대상자 확인 및 오후 내시경 혜택 안내. 묵은 속은 비우고 가벼운 몸으로 출발하세요!">
+    <meta property="og:description" content="2026년 검진 대상자 확인 및 오후 내시경 혜택 안내!">
     <meta property="og:image" content="kakao_thumb.jpg">
     
     <!-- Tailwind CSS -->
@@ -25,18 +25,17 @@
                         url('2026 풍선.png'),
                         url('https://images.unsplash.com/photo-1530103862676-de3c9da59af7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
             background-color: #60a5fa; 
+            /* [원래 설정 복원] cover: 화면 크기에 맞춰 이미지를 꽉 채웁니다 (비율 유지, 여백 없음) */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            /* 모바일에서 주소창이 사라지거나 스크롤할 때 배경이 튀는 현상을 방지합니다 */
+            background-attachment: scroll;
         }
 
-        @media (max-width: 768px) {
-            .hero-bg {
-                background-size: contain; 
-                background-position: top center;
-                background-attachment: scroll; 
-            }
-        }
+        /* [수정] 모바일 전용 스타일(contain) 제거 
+           -> 이제 모바일에서도 이미지가 화면에 꽉 차게(cover) 보입니다.
+        */
 
         .imweb-btn {
             transition: all 0.3s ease;
@@ -167,7 +166,6 @@
                     </p>
                 </div>
                 <!-- Item 2 -->
-                <!-- [수정됨] border-blue-500 -> border-transparent hover:border-blue-500 으로 변경 -->
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-transparent hover:border-blue-500 js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 100ms;">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-microscope"></i></div>
                     <h3 class="text-xl font-bold mb-3">대장 내시경 (정밀)</h3>
@@ -293,7 +291,6 @@
         <div class="container mx-auto px-6 text-center js-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
             <h2 class="font-bold mb-6 leading-relaxed">
                 <span class="block text-4xl md:text-5xl mb-3">2026년의 시작</span>
-                <!-- [수정됨] <br> 제거 및 모바일 폰트 사이즈 조정(text-lg), 단어 단위 줄바꿈(break-keep) 적용 -->
                 <span class="text-lg md:text-2xl break-keep">한국건강관리협회 부산동래검진센터와 함께하세요</span>
             </h2>
             <p class="text-gray-400 mb-10">건강은 건강할 때 지키는 것이 가장 좋습니다.</p>
@@ -332,7 +329,6 @@
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // 화면에 보이면 숨김 클래스(투명, 아래로 이동) 제거 -> 원래 위치로 부드럽게 복귀
                     entry.target.classList.remove('opacity-0', 'translate-y-8');
                     observer.unobserve(entry.target); // 한 번만 실행
                 }
