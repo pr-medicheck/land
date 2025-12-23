@@ -6,13 +6,12 @@
     <title>2026년 소화기내시경 캠페인 - 건협부산동래</title>
     
     <!-- [SNS 공유용 오픈 그래프(Open Graph) 설정] -->
-    <!-- 카카오톡, 문자, 페이스북 등으로 공유 시 보이는 내용입니다. -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="2026년, 가볍게 시작하기 - 건협부산동래">
     <meta property="og:description" content="2026년 검진 대상자 확인 및 오후 내시경 혜택 안내. 묵은 속은 비우고 가벼운 몸으로 출발하세요!">
-    <meta property="og:image" content="kakao_thumb.jpg"> <!-- 썸네일 이미지 파일명 (800x400 권장) -->
+    <meta property="og:image" content="kakao_thumb.jpg">
     
-    <!-- Tailwind CSS (스타일링 프레임워크) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 폰트: Noto Sans KR -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -22,29 +21,19 @@
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; }
         .hero-bg {
-            /* [배경 이미지 설정]
-               사용자가 저장한 '2026 풍선.png' 파일을 배경으로 사용합니다.
-               파일이 없을 경우를 대비해 예비 이미지(Unsplash)가 뒤에 설정되어 있습니다.
-            */
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
                         url('2026 풍선.png'),
                         url('https://images.unsplash.com/photo-1530103862676-de3c9da59af7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
-            
-            /* 만약 이미지가 투명 배경(PNG)이라면 배경색을 하늘색으로 지정하세요 */
             background-color: #60a5fa; 
-            
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
-        /* [모바일 화면 최적화] 화면 폭이 768px 이하일 때 적용 */
         @media (max-width: 768px) {
             .hero-bg {
-                /* 이미지가 잘리지 않고 화면 너비에 맞춰 다 보이도록 설정 */
                 background-size: contain; 
                 background-position: top center;
-                /* 모바일에서 스크롤 시 배경이 튀는 현상 방지 */
                 background-attachment: scroll; 
             }
         }
@@ -56,12 +45,23 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+
+        /* [스크롤 애니메이션 스타일 추가] */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out; /* 1초 동안 부드럽게 */
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Header (Sticky) -->
-    <header class="fixed w-full top-0 z-50 bg-white shadow-sm opacity-95">
+    <header class="fixed w-full top-0 z-50 bg-white shadow-sm opacity-95 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-xl font-bold text-blue-900 tracking-tighter">
                 한국건강관리협회 <span class="text-blue-600">부산동래검진센터</span>
@@ -80,7 +80,7 @@
 
     <!-- Hero Section -->
     <section class="hero-bg h-screen flex items-center justify-center text-center text-white pt-16">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 reveal active"> <!-- Hero 섹션은 처음부터 보이도록 active 추가 -->
             <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm mb-4 border border-white/30">
                 2026년 신년 맞이 건강 캠페인
             </span>
@@ -107,12 +107,14 @@
     <!-- Section 1: Target Audience (Check 1) -->
     <section id="target" class="py-20 bg-white">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">2026년,<br>나는 검진 대상자일까?</h2>
-            <p class="text-gray-500 mb-12">새해가 밝으면 가장 먼저 확인해야 할 필수 체크리스트</p>
+            <div class="reveal">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">2026년,<br>나는 검진 대상자일까?</h2>
+                <p class="text-gray-500 mb-12">새해가 밝으면 가장 먼저 확인해야 할 필수 체크리스트</p>
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
                 <!-- Left: Big Number -->
-                <div class="bg-blue-50 rounded-2xl p-10 shadow-sm border border-blue-100">
+                <div class="bg-blue-50 rounded-2xl p-10 shadow-sm border border-blue-100 reveal">
                     <p class="text-xl text-blue-600 font-bold mb-2">올해의 검진대상</p>
                     <div class="text-6xl font-black text-blue-900 mb-4">짝수년생</div>
                     <p class="text-gray-600">
@@ -122,7 +124,7 @@
                 </div>
 
                 <!-- Right: Check List -->
-                <div class="text-left space-y-6">
+                <div class="text-left space-y-6 reveal">
                     <div class="flex items-start">
                         <div class="bg-green-100 p-3 rounded-full mr-4 text-green-600">
                             <i class="fa-solid fa-check"></i>
@@ -158,14 +160,14 @@
     <!-- Section 2: Special Checkups -->
     <section id="special" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 reveal">
                 <span class="text-blue-600 font-bold text-sm tracking-widest uppercase">Special Care</span>
                 <h2 class="text-3xl font-bold text-gray-900 mt-2">기본 검진에 ‘안심’을 더하다</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <!-- Item 1 -->
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition reveal border-b-4 border-transparent hover:border-blue-500">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-bed"></i></div>
                     <h3 class="text-xl font-bold mb-3">수면(진정) 내시경</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">
@@ -173,7 +175,7 @@
                     </p>
                 </div>
                 <!-- Item 2 -->
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-blue-500">
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition border-b-4 border-blue-500 reveal" style="transition-delay: 100ms;">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-microscope"></i></div>
                     <h3 class="text-xl font-bold mb-3">대장 내시경 (정밀)</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">
@@ -181,7 +183,7 @@
                     </p>
                 </div>
                 <!-- Item 3 -->
-                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition reveal border-b-4 border-transparent hover:border-blue-500" style="transition-delay: 200ms;">
                     <div class="text-4xl text-blue-500 mb-6"><i class="fa-solid fa-user-doctor"></i></div>
                     <h3 class="text-xl font-bold mb-3">소화기 정밀 세트</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">
@@ -197,7 +199,7 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 
-                <div class="md:w-1/2">
+                <div class="md:w-1/2 reveal">
                     <span class="bg-yellow-400 text-blue-900 px-3 py-1 rounded text-xs font-bold mb-4 inline-block">강력 추천</span>
                     <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-snug">
                         남들 다 가는 오전 말고,<br>
@@ -226,7 +228,7 @@
                 <div class="md:w-1/2 w-full">
                     <div class="grid grid-cols-1 gap-4">
                         <!-- Benefit 1 -->
-                        <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-4">
+                        <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-4 reveal" style="transition-delay: 100ms;">
                             <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">1</div>
                             <div>
                                 <h4 class="font-bold text-lg">전날 저녁 굶지 마세요</h4>
@@ -234,7 +236,7 @@
                             </div>
                         </div>
                         <!-- Benefit 2 -->
-                        <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-8">
+                        <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-8 reveal" style="transition-delay: 200ms;">
                             <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">2</div>
                             <div>
                                 <h4 class="font-bold text-lg">새벽 기상 NO</h4>
@@ -242,7 +244,7 @@
                             </div>
                         </div>
                         <!-- Benefit 3 -->
-                        <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-4">
+                        <div class="bg-white text-gray-800 p-6 rounded-lg flex items-center shadow-lg transform translate-x-0 md:translate-x-4 reveal" style="transition-delay: 300ms;">
                             <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">3</div>
                             <div>
                                 <h4 class="font-bold text-lg">쾌적한 VIP급 환경</h4>
@@ -259,16 +261,16 @@
     <!-- Section 4: Tips -->
     <section id="tips" class="py-20 bg-white">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-12">내시경 약 복용<br>힘들지 않아요!</h2>
+            <h2 class="text-3xl font-bold text-gray-900 mb-12 reveal">내시경 약 복용<br>힘들지 않아요!</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-6 bg-gray-50 rounded-xl">
+                <div class="p-6 bg-gray-50 rounded-xl reveal">
                     <!-- 아이콘 변경: fa-ice-cream(아이스크림) -> fa-snowflake(얼음/눈송이), 색상 변경: pink -> blue -->
                     <i class="fa-solid fa-snowflake text-4xl text-blue-400 mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">차갑게 드세요</h3>
                     <p class="text-sm text-gray-500">특유의 맛과 냄새가 덜 느껴져<br>거부감이 확 줄어듭니다.</p>
                 </div>
-                <div class="p-6 bg-gray-50 rounded-xl relative overflow-hidden border-2 border-red-100">
+                <div class="p-6 bg-gray-50 rounded-xl relative overflow-hidden border-2 border-red-100 reveal" style="transition-delay: 100ms;">
                     <div class="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-1 font-bold">주의</div>
                     <i class="fa-solid fa-ban text-4xl text-red-500 mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">사탕/껌 주의사항</h3>
@@ -278,7 +280,7 @@
                         오직 생수만 섭취하세요.
                     </p>
                 </div>
-                <div class="p-6 bg-gray-50 rounded-xl">
+                <div class="p-6 bg-gray-50 rounded-xl reveal" style="transition-delay: 200ms;">
                     <i class="fa-regular fa-clock text-4xl text-blue-400 mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">오후 검진의 장점</h3>
                     <p class="text-sm text-gray-500">당일 오전 6시에 복용 시작!<br>밤새 화장실 갈 필요 없어요.</p>
@@ -289,7 +291,7 @@
 
     <!-- Footer / CTA -->
     <footer class="bg-gray-800 text-white py-16">
-        <div class="container mx-auto px-6 text-center">
+        <div class="container mx-auto px-6 text-center reveal">
             <h2 class="font-bold mb-6 leading-relaxed">
                 <span class="block text-4xl md:text-5xl mb-3">2026년의 시작</span>
                 <span class="text-xl md:text-2xl">한국건강관리협회 부산동래검진센터와 함께하세요</span>
@@ -308,8 +310,9 @@
         </div>
     </footer>
 
-    <!-- Smooth Scroll Script -->
+    <!-- Scripts -->
     <script>
+        // 1. Anchor Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -317,6 +320,26 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // 2. Scroll Reveal Animation (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // 요소의 10%가 보이면 애니메이션 시작
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // 한 번만 실행 (원할 경우 주석 처리)
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
