@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026년 소화기내시경 캠페인 - 건협부산동래</title>
+    
+    <!-- [SNS 공유용 오픈 그래프(Open Graph) 설정] -->
+    <!-- 카카오톡, 문자, 페이스북 등으로 공유 시 보이는 내용입니다. -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="2026년, 가볍게 시작하기 - 건협부산동래">
+    <meta property="og:description" content="2026년 검진 대상자 확인 및 오후 내시경 혜택 안내. 묵은 속은 비우고 가벼운 몸으로 출발하세요!">
+    <meta property="og:image" content="kakao_thumb.jpg"> <!-- 썸네일 이미지 파일명 (800x400 권장) -->
+    
     <!-- Tailwind CSS (스타일링 프레임워크) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 폰트: Noto Sans KR -->
@@ -29,6 +37,18 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+
+        /* [모바일 화면 최적화] 화면 폭이 768px 이하일 때 적용 */
+        @media (max-width: 768px) {
+            .hero-bg {
+                /* 이미지가 잘리지 않고 화면 너비에 맞춰 다 보이도록 설정 */
+                background-size: contain; 
+                background-position: top center;
+                /* 모바일에서 스크롤 시 배경이 튀는 현상 방지 */
+                background-attachment: scroll; 
+            }
+        }
+
         .imweb-btn {
             transition: all 0.3s ease;
         }
@@ -261,7 +281,7 @@
                 <div class="p-6 bg-gray-50 rounded-xl">
                     <i class="fa-regular fa-clock text-4xl text-blue-400 mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">오후 검진의 장점</h3>
-                    <p class="text-sm text-gray-500">당일 오전 6~8시에 복용 시작!<br>밤새 화장실 갈 필요 없어요.</p>
+                    <p class="text-sm text-gray-500">당일 오전 6시에 복용 시작!<br>밤새 화장실 갈 필요 없어요.</p>
                 </div>
             </div>
         </div>
