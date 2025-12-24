@@ -11,8 +11,9 @@
     <meta property="og:description" content="2026년 검진 대상자 확인 및 오후 내시경 혜택 안내!">
     <meta property="og:image" content="kakao_thumb.jpg">
     
-    <!-- 폰트: Noto Sans KR -->
+    <!-- [수정] 폰트 변경: Wanted Sans -> Noto Sans KR (원복) -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
     <!-- 아이콘: FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -30,7 +31,14 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Noto Sans KR', sans-serif; color: var(--text-dark); background-color: var(--bg-gray); line-height: 1.5; word-break: keep-all; }
+        /* [수정] 폰트 적용: Noto Sans KR 적용 */
+        body { 
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--text-dark); 
+            background-color: var(--bg-gray); 
+            line-height: 1.5; 
+            word-break: keep-all; 
+        }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
@@ -93,14 +101,17 @@
         
         /* Hero Section */
         .hero-bg {
-            /* 배경 이미지 설정 */
+            /* [수정] 텍스트 가독성을 위해 오버레이 농도를 0.2 -> 0.4로 진하게 변경 */
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                         url('https://github.com/pr-medicheck/land/blob/main/2026%20%ED%92%8D%EC%84%A0.png?raw=true');
-            background-color: #ffffff;
+            
+            background-color: #ffffff; /* 흰색 배경 */
+            
+            /* [PC 초기 설정] JS가 로드되기 전에는 cover로 보여줌 */
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* PC parallax */
+            background-attachment: fixed; /* PC에서는 패럴랙스 효과 */
             height: 100vh;
             display: flex;
             align-items: center;
@@ -126,13 +137,18 @@
         @media (max-width: 768px) {
             .mobile-scroll-wrapper { height: 200vh; position: relative; }
             .hero-bg {
-                position: sticky;
-                top: 0;
-                height: 100vh;
-                background-attachment: scroll;
-                background-size: auto 100vh; /* Start zoomed in */
-                background-position: center top;
-                z-index: 0;
+                /* 스티키 포지션: 스크롤 내릴 때 화면 상단에 고정됨 */
+                position: sticky; 
+                top: 0; 
+                height: 100vh; /* 화면 높이만큼 차지 */
+                
+                background-attachment: scroll; 
+                /* 초기: 세로(height) 100vh에 맞춤 -> 이미지가 크게 보임 (Zoom-in 상태) */
+                background-size: auto 100vh;   
+                background-position: center top; 
+                
+                /* [중요] 이미지가 사라지지 않고 다음 섹션이 덮고 올라오도록 z-index 설정 */
+                z-index: 0; 
             }
             .section-title { font-size: 1.5rem; }
             .text-6xl { font-size: 3rem; }
@@ -312,15 +328,15 @@
             </div>
 
             <div class="grid md-grid-cols-3 text-center">
-                <!-- Item 1 -->
+                <!-- Item 1 (위치 이동: 소화기 정밀 검진 프로그램) -->
                 <div class="card js-reveal">
-                    <div class="text-4xl text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-bed"></i></div>
-                    <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">수면(의식하진정) 내시경</h3>
+                    <div class="text-4xl text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-user-doctor"></i></div>
+                    <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">소화기 정밀 검진 프로그램</h3>
                     <p class="text-gray-500 text-sm">
-                        CO2 주입으로 복통 완화
+                        위/대장 내시경 + 복부 초음파 +<br>종양표지자(혈액 정밀) 검사
                     </p>
                 </div>
-                <!-- Item 2 -->
+                <!-- Item 2 (위치 고정) -->
                 <div class="card js-reveal" style="transition-delay: 100ms;">
                     <div class="text-4xl text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-microscope"></i></div>
                     <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">대장 내시경 & 용종 제거</h3>
@@ -329,12 +345,14 @@
                         <span style="font-size: 0.75rem; color: #9ca3af;">단, 환자에 따라 다를 수 있습니다.</span>
                     </p>
                 </div>
-                <!-- Item 3 -->
+                <!-- Item 3 (위치 이동: 수면(의식하진정) 내시경) -->
                 <div class="card js-reveal" style="transition-delay: 200ms;">
-                    <div class="text-4xl text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-user-doctor"></i></div>
-                    <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">소화기 정밀 검진 프로그램</h3>
+                    <div class="text-4xl text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-bed"></i></div>
+                    <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">수면(의식하진정) 내시경</h3>
+                    <!-- [수정] 문구 변경 적용: 수면비(진정제 투여비) 별도 안내 추가 -->
                     <p class="text-gray-500 text-sm">
-                        위/대장 내시경 + 복부 초음파 +<br>종양표지자(혈액 정밀) 검사
+                        잠든 사이 편안하게,<br>검사 후 속 편한 CO2 사용<br>
+                        <span style="font-size: 0.75rem; color: #9ca3af;">단, 진정제 투여비 별도</span>
                     </p>
                 </div>
             </div>
