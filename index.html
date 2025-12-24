@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026년 소화기내시경 캠페인 - 건협부산동부</title>
+    <title>2026년 새해, 가벼운 시작 캠페인 - 건협부산동부</title>
     
     <!-- [SNS 공유용 오픈 그래프] -->
     <meta property="og:type" content="website">
@@ -206,6 +206,7 @@
         
         /* Social Buttons */
         .social-btn { width: 3.5rem; height: 3.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: opacity 0.3s; }
+        .btn-home { background-color: var(--primary-blue); color: white; }
         .btn-kakao { background-color: #FEE500; color: #3c1e1e; }
         .btn-insta { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); color: white; }
         .btn-naver { background-color: #03C75A; color: white; }
@@ -491,7 +492,11 @@
                 </a>
             </div>
 
+            <!-- Social Icons (Home 버튼 추가) -->
             <div class="flex justify-center" style="gap: 1.5rem; margin-bottom: 3rem;">
+                <a href="https://busan.kahp.or.kr/ho/medi/intro.do" target="_blank" class="social-btn btn-home" aria-label="홈페이지">
+                    <i class="fa-solid fa-house"></i>
+                </a>
                 <a href="https://blog.naver.com/kahpbusan" target="_blank" class="social-btn btn-naver" aria-label="네이버 블로그">
                     <span style="font-weight: 900; font-family: sans-serif;">N</span>
                 </a>
@@ -543,7 +548,7 @@
             observer.observe(el);
         });
 
-        // 3. Hero Scroll Effect (Updated to start at 170%)
+        // 3. Hero Scroll Effect (170% Start)
         const heroBgLayer = document.querySelector('.hero-bg-layer');
         const heroWrapper = document.querySelector('.mobile-scroll-wrapper');
 
@@ -553,8 +558,7 @@
             const vw = window.innerWidth;
 
             if (window.innerWidth <= 768) {
-                // [Mobile] 170% Start
-                const startScale = 1.7; // 170%
+                const startScale = 1.7; 
                 const endScale = 1;
                 const maxScroll = heroWrapper.offsetHeight - vh;
                 
@@ -568,9 +572,7 @@
                 heroBgLayer.style.transform = `scale(${currentScale})`;
                 
             } else {
-                // [PC] 170% Start
                 let pcProgress = scrollY / vh; 
-                // [수정] 170% 시작 -> 100% 종료 (변화폭 70)
                 let pcSize = 170 - (pcProgress * 70);
                 
                 if (pcSize < 100) pcSize = 100;
