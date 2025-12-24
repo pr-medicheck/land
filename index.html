@@ -110,8 +110,9 @@
         .hero-bg-layer {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
+            /* [수정] 배경 이미지 파일명 적용 */
             background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                              url('https://github.com/pr-medicheck/land/blob/main/2026%20%ED%92%8D%EC%84%A0.png?raw=true');
+                              url('2026 풍선.png');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -125,7 +126,7 @@
             width: 100%;
         }
 
-        /* [모바일 전용 스타일 수정] */
+        /* [모바일 전용 스타일] */
         @media (max-width: 768px) {
             header { height: 60px; }
             .header-logo { font-size: 0.95rem !important; }
@@ -150,7 +151,6 @@
             
             .nav-link { display: none; }
             
-            /* 텍스트 크기 및 간격 최적화 */
             .hero-badge { margin-bottom: 2.5rem !important; font-size: 0.8rem; }
             .hero-title { font-size: 2.5rem !important; line-height: 1.2 !important; margin-bottom: 1.5rem !important; }
             .hero-desc { 
@@ -178,7 +178,7 @@
             .hero-title { font-size: 2.2rem !important; margin-bottom: 0.5rem !important; }
         }
 
-        /* --- Sections --- */
+        /* --- Components --- */
         .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: #111827; }
         .section-desc { color: var(--text-light); margin-bottom: 3rem; }
 
@@ -195,7 +195,6 @@
         .benefit-card { background-color: white; border-radius: 1rem; padding: 1.5rem; display: flex; align-items: flex-start; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: #1f2937; margin-bottom: 1rem; transition: transform 0.3s; }
         .benefit-num { background-color: #eff6ff; color: var(--primary-blue); width: 3rem; height: 3rem; min-width: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem; margin-right: 1rem; flex-shrink: 0; }
 
-        /* --- Components --- */
         .btn { display: inline-block; padding: 1rem 2rem; border-radius: 0.5rem; font-weight: 700; transition: all 0.3s; cursor: pointer; text-align: center; }
         .btn-white { background-color: white; color: var(--primary-dark); }
         .btn-blue { background-color: var(--primary-blue); color: white; }
@@ -204,7 +203,6 @@
         .card { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border-bottom: 4px solid transparent; transition: transform 0.3s; }
         .card i { font-size: 3.5rem !important; line-height: 1; display: inline-block; margin-bottom: 1rem; }
         
-        /* Social Buttons */
         .social-btn { width: 3.5rem; height: 3.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: opacity 0.3s; }
         .btn-home { background-color: var(--primary-blue); color: white; }
         .btn-kakao { background-color: #FEE500; color: #3c1e1e; }
@@ -492,9 +490,9 @@
                 </a>
             </div>
 
-            <!-- Social Icons (Home 버튼 추가) -->
+            <!-- Social Icons -->
             <div class="flex justify-center" style="gap: 1.5rem; margin-bottom: 3rem;">
-                <a href="https://busan.kahp.or.kr/ho/medi/intro.do" target="_blank" class="social-btn btn-home" aria-label="홈페이지">
+                <a href="https://busan.kahp.or.kr/" target="_blank" class="social-btn btn-home" aria-label="홈페이지">
                     <i class="fa-solid fa-house"></i>
                 </a>
                 <a href="https://blog.naver.com/kahpbusan" target="_blank" class="social-btn btn-naver" aria-label="네이버 블로그">
@@ -503,7 +501,7 @@
                 <a href="https://pf.kakao.com/_hxlwFu/" target="_blank" class="social-btn btn-kakao" aria-label="카카오채널">
                     <i class="fa-solid fa-comment"></i>
                 </a>
-                <a href="https://www.instagram.com/kahp_busan/" target="_blank" class="social-btn btn-insta" aria-label="인스타그램">
+                <a href="https://www.instagram.com/kahp__busan/" target="_blank" class="social-btn btn-insta" aria-label="인스타그램">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
             </div>
