@@ -1,589 +1,418 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026년 새해, 가벼운 시작 캠페인 - 건협부산동부</title>
-    
-    <!-- [SNS 공유용 오픈 그래프] -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="2026년, 가볍게 시작하기 - 건협부산동부">
-    <meta property="og:description" content="2026년 검진 대상자 확인 및 오후 내시경 혜택 안내!">
-    <meta property="og:image" content="kakao_thumb.jpg">
-    
-    <!-- 폰트: Noto Sans KR -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
-    <!-- 아이콘: FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* --- Reset & Variables --- */
-        :root {
-            --primary-blue: #2563eb;
-            --primary-dark: #1e3a8a;
-            --accent-yellow: #facc15;
-            --bg-gray: #f9fafb;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --white: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="2026년 소화기내시경 캠페인 - 건협부산동부" />
+<meta name="description" content="2026년 신년 맞이 소화기내시경 검진 안내 및 오후 내시경 혜택" />
+<title>2026년 소화기내시경 캠페인 - 건협부산동부</title>
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Noto Sans KR', sans-serif;
-            color: var(--text-dark); 
-            background-color: var(--bg-gray); 
-            line-height: 1.5; 
-            word-break: keep-all; 
-        }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
+<!-- 폰트 및 아이콘 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        /* --- Utilities --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-        .text-center { text-align: center !important; }
-        .text-left { text-align: left !important; }
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .items-center { align-items: center; }
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
+<style>
+    /* --- 기본 변수 및 초기화 --- */
+    :root {
+        --primary-blue: #2563eb;
+        --primary-dark: #1e3a8a;
+        --accent-yellow: #facc15;
+        --bg-gray: #f9fafb;
+        --text-dark: #1f2937;
+        --text-light: #6b7280;
+        --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body { 
+        font-family: 'Noto Sans KR', sans-serif;
+        color: var(--text-dark); 
+        background-color: var(--bg-gray); 
+        line-height: 1.5; 
+        word-break: keep-all;
+        overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; }
+
+    /* --- 유틸리티 --- */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; width: 100%; }
+    .text-center { text-align: center !important; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .font-bold { font-weight: 700; }
+    .font-black { font-weight: 900; }
+    .text-blue { color: var(--primary-blue); }
+    .text-yellow { color: var(--accent-yellow); }
+    .bg-white { background-color: var(--white); }
+    .mobile-only-br { display: none; }
+    .relative-z10 { position: relative; z-index: 10; background-color: inherit; }
+
+    /* --- 섹션 공통 --- */
+    .section-padding { padding: 4rem 0; }
+    .section-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; color: #111827; letter-spacing: -0.02em; }
+    .section-desc { color: var(--text-light); margin-bottom: 2.5rem; font-size: 1rem; }
+
+    /* --- 애니메이션 (Reveal) --- */
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* --- 상단 헤더 --- */
+    header { 
+        position: fixed; width: 100%; top: 0; z-index: 999; 
+        background-color: rgba(255, 255, 255, 0.98); 
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
+        height: 70px; display: flex; align-items: center;
+    }
+    .header-logo { font-size: 1.1rem; line-height: 1.2; white-space: nowrap; }
+    .nav-link { margin-left: 1.5rem; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; color: #4b5563; }
+    .nav-link:hover { color: var(--primary-blue); }
+    .header-btn { width: 38px; height: 38px; border-radius: 50%; background-color: var(--primary-blue); color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-left: 1rem; }
+
+    /* --- 히어로 섹션 --- */
+    .hero-section {
+        position: relative; height: 100vh; overflow: hidden;
+        display: flex; align-items: center; justify-content: center;
+        color: white; text-align: center; background-color: #000;
+    }
+    .hero-bg-layer {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+                          url('/resources/common/images/br/busan/2026_busan_intro.png');
+        background-size: cover; background-position: center; background-repeat: no-repeat;
+        z-index: 0; will-change: transform; 
+    }
+    .hero-content { position: relative; z-index: 20; width: 100%; padding-top: 60px; }
+    .hero-badge { 
+        display: inline-block; background-color: rgba(255, 255, 255, 0.2); 
+        padding: 0.4rem 1rem; border-radius: 9999px; margin-bottom: 1.25rem; 
+        border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(4px);
+        font-size: 0.9rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .hero-title { font-size: 3rem; margin-bottom: 1.25rem; line-height: 1.2; text-shadow: 0 4px 8px rgba(0,0,0,0.5); font-weight: 900; }
+    .hero-desc { font-size: 1.1rem; margin-bottom: 2.5rem; color: #f3f4f6; text-shadow: 0 2px 4px rgba(0,0,0,0.3); padding: 0 1rem; }
+
+    /* 버튼 시스템 */
+    .btn { 
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 0.9rem 1.5rem; border-radius: 0.6rem; font-weight: 700; 
+        transition: all 0.3s; cursor: pointer; border: none; font-size: 1rem;
+    }
+    .btn-white { background-color: white; color: var(--primary-dark); }
+    .btn-blue { background-color: var(--primary-blue); color: white; }
+    .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2); }
+
+    /* 히어로 버튼 그리드 */
+    .hero-btns {
+        display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;
+        gap: 0.75rem; max-width: 1000px; margin: 0 auto; padding: 0 1rem;
+    }
+    .hero-btns .btn { min-width: 280px; flex: 0 1 auto; }
+
+    /* --- 암 검진 리스트 --- */
+    .check-item { display: flex; align-items: center; margin-bottom: 1rem; text-align: left; }
+    .check-icon { 
+        display: flex; align-items: center; justify-content: center; 
+        width: 2.75rem; height: 2.75rem; min-width: 2.75rem; 
+        border-radius: 50%; background-color: #dcfce7; color: #16a34a; 
+        margin-right: 1rem; flex-shrink: 0; font-size: 1.1rem;
+    }
+
+    /* --- 특화 검진 카드 --- */
+    .grid { display: grid; gap: 1.5rem; }
+    .card { 
+        background: white; padding: 2rem; border-radius: 1rem; 
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); 
+        transition: transform 0.3s; border-bottom: 3px solid transparent;
+    }
+    .card:hover { transform: translateY(-5px); border-bottom-color: var(--primary-blue); }
+    .card i { font-size: 2.5rem !important; margin-bottom: 1rem; color: var(--primary-blue); }
+
+    /* --- 오후 내시경 섹션 --- */
+    .recommend-box { 
+        background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.2); 
+        border-radius: 0.75rem; padding: 1.5rem; margin-top: 1.5rem; text-align: left; 
+    }
+    .recommend-title { font-weight: 700; margin-bottom: 0.75rem; font-size: 1.1rem; }
+    .recommend-item { display: flex; align-items: flex-start; margin-bottom: 0.6rem; font-size: 0.95rem; opacity: 0.9; }
+    .benefit-card { 
+        background-color: white; border-radius: 1rem; padding: 1.25rem; 
+        display: flex; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        color: #1f2937; margin-bottom: 1rem; 
+    }
+    .benefit-num { 
+        background-color: #eff6ff; color: var(--primary-blue); 
+        width: 2.5rem; height: 2.5rem; border-radius: 50%; 
+        display: flex; align-items: center; justify-content: center; 
+        font-weight: 800; margin-right: 1rem; flex-shrink: 0; 
+    }
+
+    /* --- 푸터 --- */
+    footer { background-color: #1f2937; color: white; padding: 4rem 0 3rem; }
+    .social-btn { width: 3.25rem; height: 3.25rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; transition: opacity 0.3s; }
+    .social-btn:hover { opacity: 0.8; }
+    .btn-naver { background-color: #03C75A; font-weight: 900; }
+    .btn-kakao { background-color: #FEE500; color: #3c1e1e; }
+    .btn-insta { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+
+    /* --- [PC 대응] --- */
+    @media (min-width: 768px) {
+        .section-padding { padding: 6rem 0; }
+        .section-title { font-size: 2.5rem; }
+        .md-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .md-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .md-flex { display: flex; }
+        .md-hidden { display: none; }
+        .afternoon-container { flex-direction: row !important; align-items: flex-start !important; }
+        .afternoon-left { width: 45% !important; padding-right: 3rem; text-align: left !important; }
+        .afternoon-right { width: 55% !important; }
+        .header-logo { font-size: 1.25rem; }
+        .hero-title { font-size: 4rem; }
+    }
+
+    /* --- [모바일 핵심 최적화] --- */
+    @media (max-width: 768px) {
+        .mobile-only-br { display: block; }
+        header { height: 60px; }
+        .header-logo { font-size: 0.95rem; }
+        .nav-link { display: none; }
         
-        .font-bold { font-weight: 700; }
-        .font-black { font-weight: 900; }
-        .text-blue { color: var(--primary-blue); }
-        .text-yellow { color: var(--accent-yellow); }
-        .text-gray-500 { color: var(--text-light); }
-        .bg-white { background-color: var(--white); }
+        .hero-section { position: sticky; top: 0; padding-top: 0; }
+        .mobile-scroll-wrapper { height: 200vh; position: relative; }
         
-        /* 모바일 전용 줄바꿈 클래스 */
-        .mobile-only-br { display: none; }
-        
-        .grid { display: grid; gap: 2rem; }
-        @media (min-width: 768px) {
-            .md-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-            .md-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-            .md-flex { display: flex; }
-            .md-hidden { display: none; }
-            .md-text-left { text-align: left; }
-            
-            .afternoon-container { flex-direction: row !important; align-items: flex-start !important; }
-            .afternoon-left { width: 45% !important; padding-right: 2rem; text-align: left !important; }
-            .afternoon-right { width: 55% !important; }
+        .hero-title { font-size: 2.25rem !important; margin-bottom: 1rem; }
+        .hero-desc { font-size: 0.95rem; margin-bottom: 2rem; }
 
-            /* PC에서 예약 관련 버튼들의 너비를 동일하게 고정 */
-            .footer-btns .btn {
-                min-width: 320px;
-                flex: 0 1 auto;
-            }
+        /* [모바일 버튼 레이아웃 변경: 1+2 구조] */
+        .hero-btns {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+            padding: 0 1rem;
+        }
+        .hero-btns a:first-child { grid-column: span 2; } /* 첫번째 버튼은 전체 너비 */
+        .hero-btns .btn { 
+            min-width: 0 !important; 
+            padding: 0.8rem 0.5rem; 
+            font-size: 0.85rem;
+            height: auto;
         }
 
-        /* --- Header --- */
-        header { 
-            position: fixed; width: 100%; top: 0; z-index: 999; 
-            background-color: rgba(255, 255, 255, 0.98); 
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
-            height: 70px; 
-            display: flex; align-items: center;
-            transition: height 0.3s;
-        }
-        .header-logo { font-size: 1.25rem; line-height: 1.2; }
-        .nav-link { margin-left: 2rem; font-weight: 500; transition: color 0.3s; }
-        .nav-link:hover { color: var(--primary-blue); }
-        .header-btn { width: 40px; height: 40px; border-radius: 50%; background-color: var(--primary-blue); color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-left: 1rem; }
-
-        /* --- Hero Section --- */
-        .hero-section {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            background-color: #ffffff; 
-            padding-top: 70px;
-        }
-
-        .hero-bg-layer {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            /* [수정] 배경 이미지 파일명 적용 */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                              url('2026 풍선.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            z-index: 0;
-            will-change: transform; 
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 20; 
-            width: 100%;
-        }
-
-        /* [모바일 전용 스타일] */
-        @media (max-width: 768px) {
-            header { height: 60px; }
-            .header-logo { font-size: 0.95rem !important; }
-            .mobile-only-br { display: block; } 
-            
-            .mobile-scroll-wrapper { height: 200vh; position: relative; }
-            
-            .hero-section {
-                position: sticky; 
-                top: 0; 
-                height: 100vh;
-                display: block; 
-                padding-top: 35vh !important; 
-                overflow: hidden;
-            }
-            
-            .hero-bg-layer {
-                background-size: 100% auto; 
-                background-position: center top; 
-                transform-origin: center top;    
-            }
-            
-            .nav-link { display: none; }
-            
-            .hero-badge { margin-bottom: 2.5rem !important; font-size: 0.8rem; }
-            .hero-title { font-size: 2.5rem !important; line-height: 1.2 !important; margin-bottom: 1.5rem !important; }
-            .hero-desc { 
-                font-size: 1rem !important; 
-                margin-bottom: 3rem !important; 
-                padding: 0 1rem; 
-                line-height: 1.6; 
-                display: block !important;
-            }
-            
-            .footer-btns { flex-direction: column; width: 100%; }
-            .footer-btns .btn { width: 100%; margin: 0 0 0.5rem 0 !important; padding: 0.8rem 1rem; font-size: 1rem; }
-            
-            .afternoon-container { flex-direction: column !important; }
-            .afternoon-left { width: 100% !important; margin-bottom: 2rem; text-align: center !important; }
-            .afternoon-right { width: 100% !important; }
-
-            .grid { grid-template-columns: 1fr; gap: 3.5rem !important; }
-
-            .footer-main-text { font-size: 2rem !important; }
-        }
-
-        @media (max-width: 768px) and (max-height: 650px) {
-            .hero-section { padding-top: 25vh !important; } 
-            .hero-title { font-size: 2.2rem !important; margin-bottom: 0.5rem !important; }
-        }
-
-        /* --- Components --- */
-        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: #111827; }
-        .section-desc { color: var(--text-light); margin-bottom: 3rem; }
-
-        .check-item { display: flex; align-items: center; margin-bottom: 0.8rem; text-align: left; }
-        .check-icon { display: flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; min-width: 3rem; min-height: 3rem; border-radius: 50%; background-color: #dcfce7; color: #16a34a; margin-right: 1rem; flex-shrink: 0; }
-
-        .recommend-box { background-color: rgba(29, 78, 216, 0.4); border: 1px solid rgba(147, 197, 253, 0.5); border-radius: 0.75rem; padding: 2rem; margin-top: 2rem; text-align: left; }
-        .recommend-title { font-weight: 700; margin-bottom: 2rem; font-size: 1.25rem; color: white; }
-        .recommend-list { list-style: none; padding: 0; margin: 0; }
-        .recommend-item { display: flex; align-items: flex-start; margin-bottom: 0.8rem; color: #dbeafe; font-size: 1rem; line-height: 1.6; }
-        .recommend-item:last-child { margin-bottom: 0; }
-        .recommend-icon { color: var(--accent-yellow); margin-right: 1rem; width: 1.5rem; text-align: center; flex-shrink: 0; margin-top: 0.2rem; }
-
-        .benefit-card { background-color: white; border-radius: 1rem; padding: 1.5rem; display: flex; align-items: flex-start; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: #1f2937; margin-bottom: 1rem; transition: transform 0.3s; }
-        .benefit-num { background-color: #eff6ff; color: var(--primary-blue); width: 3rem; height: 3rem; min-width: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem; margin-right: 1rem; flex-shrink: 0; }
-
-        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 0.5rem; font-weight: 700; transition: all 0.3s; cursor: pointer; text-align: center; }
-        .btn-white { background-color: white; color: var(--primary-dark); }
-        .btn-blue { background-color: var(--primary-blue); color: white; }
-        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        
-        .card { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border-bottom: 4px solid transparent; transition: transform 0.3s; }
-        .card i { font-size: 3.5rem !important; line-height: 1; display: inline-block; margin-bottom: 1rem; }
-        
-        .social-btn { width: 3.5rem; height: 3.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: opacity 0.3s; }
-        .btn-home { background-color: var(--primary-blue); color: white; }
-        .btn-kakao { background-color: #FEE500; color: #3c1e1e; }
-        .btn-insta { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); color: white; }
-        .btn-naver { background-color: #03C75A; color: white; }
-
-        .relative-z10 { position: relative; z-index: 10; background-color: inherit; }
-        
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-    </style>
+        .section-title { font-size: 1.5rem; }
+        .section-desc { font-size: 0.9rem; margin-bottom: 2rem; }
+        .grid { gap: 1rem !important; }
+        .card { padding: 1.5rem; }
+        .afternoon-left { text-align: center !important; }
+    }
+</style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
+    <!-- 헤더 -->
+    <header> 
         <div class="container flex justify-between items-center" style="height: 100%;">
             <div class="header-logo font-bold text-blue" style="color: #1e3a8a;">
                 한국건강관리협회 <span style="color: #2563eb;">부산동부검진센터</span>
             </div>
-            <nav class="md-flex hidden">
-                <a href="#target" class="nav-link">검진 대상자</a>
-                <a href="#special" class="nav-link">특화 검진</a>
-                <a href="#afternoon" class="nav-link">오후 내시경</a>
-                <a href="#tips" class="nav-link">정결제 복용</a>
+            <nav class="md-flex hidden"> 
+                <a href="#target" class="nav-link">검진 대상자</a> 
+                <a href="#special" class="nav-link">특화 검진</a> 
+                <a href="#afternoon" class="nav-link">오후 내시경</a> 
+                <a href="#tips" class="nav-link">정결제 복용</a> 
             </nav>
-            <a href="tel:0515536400" class="header-btn" aria-label="전화 예약">
-                <i class="fa-solid fa-phone"></i>
+            <a href="tel:0515536400" class="header-btn" aria-label="전화 예약"> 
+                <i class="fa-solid fa-phone"></i> 
             </a>
-        </div>
+        </div> 
     </header>
 
-    <!-- Hero Section -->
+    <!-- 히어로 섹션 -->
     <div class="mobile-scroll-wrapper">
-        <section class="hero-section">
-            <div class="hero-bg-layer"></div>
-            
+        <section class="hero-section"> 
+            <div class="hero-bg-layer"></div> 
             <div class="hero-content container js-reveal">
-                <span class="hero-badge" style="display: inline-block; background-color: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 9999px; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(4px); text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-                    신년 맞이 건강 캠페인
-                </span>
-                <h1 class="hero-title font-black" style="font-size: 3.75rem; margin-bottom: 1.5rem; line-height: 1.2; text-shadow: 0 4px 6px rgba(0,0,0,0.5);">
-                    2026년<br>
-                    <span class="text-yellow">가볍게 시작하기</span>
-                </h1>
-                <p class="hero-desc text-xl" style="margin-bottom: 2.5rem; color: #f3f4f6; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-                    새해 다짐 1순위는 건강입니다.<br>
-                    소화기 정밀 검사와 여유로운 오후 내시경으로<br>
-                    몸과 마음이 가벼운 한 해를 시작하세요.
-                </p>
-                <div class="flex flex-col md-flex-row justify-center footer-btns" style="gap: 1rem; align-items: center;">
-                    <a href="#target" class="btn btn-white shadow-lg">
-                        검진 대상자 확인하기
-                    </a>
-                    <a href="tel:0515536400" class="btn btn-blue shadow-lg">
-                        전화로 간편 예약하기
-                    </a>
+                <span class="hero-badge">신년 맞이 건강 캠페인</span>
+                <h1 class="hero-title font-black">2026년<br><span class="text-yellow">가볍게 시작하기</span></h1>
+                <p class="hero-desc">새해 다짐 1순위는 건강입니다.<br>소화기 정밀 검사와 여유로운 오후 내시경으로 시작하세요.</p>
+                
+                <div class="hero-btns">
+                    <a href="#target" class="btn btn-white shadow-lg">검진 대상자 확인하기</a>
+                    <a href="https://busan.kahp.or.kr/ho/medi/intro.do" target="_blank" class="btn btn-blue shadow-lg">홈페이지 예약</a>
+                    <a href="tel:0515536400" class="btn btn-blue shadow-lg">전화 간편 예약</a>
                 </div>
-            </div>
+            </div> 
         </section>
     </div>
 
-    <!-- Section 1: Target Audience -->
-    <section id="target" class="relative-z10 bg-white" style="padding: 5rem 0;"> 
+    <!-- 섹션 1: 검진 대상자 -->
+    <section id="target" class="relative-z10 bg-white section-padding"> 
         <div class="container text-center">
-            <div class="js-reveal">
-                <h2 class="section-title" style="font-size: 2rem !important; font-weight: 700; margin-bottom: 1rem; color: #111827;">2026년,<br>나는 검진 대상자일까?</h2>
-                <p class="section-desc" style="margin-bottom: 3rem;">새해가 밝으면 가장 먼저 확인해야 할<br>필수 체크리스트</p>
+            <div class="reveal js-reveal">
+                <h2 class="section-title">2026년,<br>나는 검진 대상자일까?</h2>
+                <p class="section-desc">새해가 밝으면 가장 먼저 확인해야 할 필수 체크리스트</p>
             </div>
             
-            <div class="grid md-grid-cols-2 items-center" style="max-width: 56rem; margin: 0 auto;">
-                <div class="bg-blue-50 rounded-2xl js-reveal" style="padding: 2rem; border: 1px solid #dbeafe; background-color: #eff6ff;">
-                    <p class="text-xl font-bold mb-2" style="color: #2563eb; margin-bottom: 0.5rem;">2026년 검진대상</p>
-                    <div class="text-6xl font-black mb-4" style="color: #1e3a8a; margin-bottom: 1rem; font-size: 3.75rem;">짝수년생</div>
-                    <p class="text-gray-500 mb-6" style="margin-bottom: 1.5rem;">
-                        출생연도 끝자리가<br>
-                        <strong>0, 2, 4, 6, 8</strong>인 분들
-                    </p>
-
+            <div class="grid md-grid-cols-2 items-center" style="max-width: 900px; margin: 0 auto;">
+                <div class="bg-blue-50 rounded-2xl reveal js-reveal" style="padding: 2rem; border: 1px solid #dbeafe; background-color: #eff6ff;">
+                    <p class="text-lg font-bold mb-1" style="color: #2563eb;">2026년 검진대상</p>
+                    <div class="text-5xl font-black mb-4" style="color: #1e3a8a;">짝수년생</div>
+                    <p class="text-gray-500 mb-6">출생연도 끝자리가 <strong>0, 2, 4, 6, 8</strong></p>
                     <div class="bg-white rounded-xl" style="padding: 1.25rem; text-align: left; border: 1px solid #dbeafe;">
-                        <h4 class="font-bold text-blue mb-3" style="color: #1e40af; border-bottom: 1px solid #dbeafe; padding-bottom: 0.5rem; margin-bottom: 0.75rem;">
-                            <i class="fa-solid fa-clipboard-list mr-2"></i> 일반건강검진 대상자는?
-                        </h4>
-                        <ul class="text-sm space-y-2 mb-3" style="color: #4b5563; margin-bottom: 0.75rem; list-style: none;">
-                            <li style="display: flex; margin-bottom: 0.5rem;">
-                                <span class="text-blue" style="margin-right: 0.5rem;">•</span>
-                                <span>지역세대주, 직장가입자,<br>20세 이상 세대원과 피부양자</span>
-                            </li>
-                            <li style="display: flex;">
-                                <span class="text-blue" style="margin-right: 0.5rem;">•</span>
-                                <span>20세~64세 의료급여수급권자</span>
-                            </li>
-                        </ul>
-                        <div class="text-xs font-medium" style="color: #2563eb; background: #eff6ff; padding: 0.5rem; border-radius: 0.25rem;">
-                            ※ 매 2년마다 1회, 비사무직은 매년 실시
-                        </div>
+                        <h4 class="font-bold text-blue mb-2" style="font-size: 0.9rem;"> <i class="fa-solid fa-clipboard-list mr-1"></i> 일반건강검진 대상자 </h4>
+                        <p class="text-sm" style="color: #4b5563; line-height: 1.6;">직장가입자, 지역세대주, 20세 이상 세대원 및 피부양자, 의료급여수급권자 (매 2년 1회)</p>
                     </div>
                 </div>
 
-                <div class="flex flex-col js-reveal text-left" style="gap: 1.5rem; justify-content: center;">
-                    <div class="check-item">
-                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                        <div>
-                            <h3 class="font-bold text-lg">위암 검진</h3>
-                            <p class="text-sm text-gray-500">만 40세 이상 남녀 (2년 주기)</p>
-                        </div>
-                    </div>
-                    <div class="check-item">
-                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                        <div>
-                            <h3 class="font-bold text-lg">대장암 검진</h3>
-                            <p class="text-sm text-gray-500">만 50세 이상 남녀 (1년 주기, 분변잠혈)</p>
-                        </div>
-                    </div>
-                    <div class="check-item">
-                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                        <div>
-                            <h3 class="font-bold text-lg">간암 검진</h3>
-                            <p class="text-sm text-gray-500">만 40세 이상 고위험군 (6개월 주기)</p>
-                        </div>
-                    </div>
-                    <div class="check-item">
-                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                        <div>
-                            <h3 class="font-bold text-lg">유방암 검진</h3>
-                            <p class="text-sm text-gray-500">만 40세 이상 여성 (2년 주기)</p>
-                        </div>
-                    </div>
-                    <div class="check-item">
-                        <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                        <div>
-                            <h3 class="font-bold text-lg">자궁경부암 검진</h3>
-                            <p class="text-sm text-gray-500">만 20세 이상 여성 (2년 주기)</p>
-                        </div>
-                    </div>
+                <div class="flex flex-col js-reveal text-left" style="padding: 0.5rem 0;">
+                    <div class="check-item reveal js-reveal"><div class="check-icon"><i class="fa-solid fa-check"></i></div><div><h3 class="font-bold">위암 검진</h3><p class="text-sm text-gray-500">만 40세 이상 남녀 (2년 주기)</p></div></div>
+                    <div class="check-item reveal js-reveal"><div class="check-icon"><i class="fa-solid fa-check"></i></div><div><h3 class="font-bold">대장암 검진</h3><p class="text-sm text-gray-500">만 50세 이상 남녀 (1년 주기)</p></div></div>
+                    <div class="check-item reveal js-reveal"><div class="check-icon"><i class="fa-solid fa-check"></i></div><div><h3 class="font-bold">간암·유방암·자궁경부암</h3><p class="text-sm text-gray-500">연령 및 주기별 검진 대상 확인</p></div></div>
                 </div>
             </div>
-        </div>
+        </div> 
     </section>
 
-    <!-- Section 2: Special Checkups -->
-    <section id="special" class="relative-z10" style="background-color: #f9fafb; padding: 5rem 0;">
+    <!-- 섹션 2: 특화 검진 -->
+    <section id="special" class="relative-z10 section-padding" style="background-color: #f9fafb;"> 
         <div class="container">
-            <div class="text-center mb-16 js-reveal" style="margin-bottom: 4rem;">
-                <span class="text-blue font-bold text-sm" style="letter-spacing: 0.1em; text-transform: uppercase;">Special Care</span>
-                <h2 class="section-title" style="margin-top: 0.5rem;">기본 검진에 ‘안심’을 더하다</h2>
+            <div class="text-center mb-12 reveal js-reveal">
+                <h2 class="section-title">기본 검진에 ‘안심’을 더하다</h2>
+                <p class="section-desc">건협부산동부만의 체계적인 소화기 정밀 프로그램</p>
             </div>
-
             <div class="grid md-grid-cols-3 text-center">
-                <div class="card js-reveal">
-                    <div class="text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-user-doctor"></i></div>
-                    <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">소화기 정밀 검진 프로그램</h3>
-                    <p class="text-gray-500 text-sm">
-                        위/대장 내시경 + 복부 초음파 +<br>종양표지자(혈액 정밀) 검사
-                    </p>
+                <div class="card reveal js-reveal">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <h3 class="font-bold mb-2">소화기 정밀 검진</h3>
+                    <p class="text-gray-500 text-sm">위/대장 내시경 + 초음파 +<br>종양표지자(혈액) 검사</p>
                 </div>
-                <div class="card js-reveal" style="transition-delay: 100ms;">
-                    <div class="text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-microscope"></i></div>
-                    <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">대장 내시경 & 용종 제거</h3>
-                    <p class="text-gray-500 text-sm">
-                        용종 발견 시 즉시 제거 가능합니다.<br>
-                        <span style="font-size: 0.75rem; color: #9ca3af;">단, 환자에 따라 다를 수 있습니다.</span>
-                    </p>
+                <div class="card reveal js-reveal">
+                    <i class="fa-solid fa-microscope"></i>
+                    <h3 class="font-bold mb-2">원스톱 용종 제거</h3>
+                    <p class="text-gray-500 text-sm">대장 내시경 중 용종 발견 시<br>당일 즉시 제거 가능</p>
                 </div>
-                <div class="card js-reveal" style="transition-delay: 200ms;">
-                    <div class="text-blue" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-bed"></i></div>
-                    <h3 class="text-xl font-bold mb-3" style="margin-bottom: 0.75rem;">수면(의식하진정) 내시경</h3>
-                    <p class="text-gray-500 text-sm">
-                        잠든 사이 편안하게,<br>검사 후 속 편한 CO₂ 사용<br>
-                        <span style="font-size: 0.75rem; color: #9ca3af;">단, 진정제 투여비 별도</span>
-                    </p>
+                <div class="card reveal js-reveal">
+                    <i class="fa-solid fa-bed"></i>
+                    <h3 class="font-bold mb-2">편안한 수면 내시경</h3>
+                    <p class="text-gray-500 text-sm">검사 후 복부 팽만감이 적은<br>CO₂ 기체 사용</p>
                 </div>
             </div>
-        </div>
+        </div> 
     </section>
 
-    <!-- Section 3: Afternoon Endoscopy -->
-    <section id="afternoon" class="relative-z10" style="background-color: #1e3a8a; color: white; padding: 5rem 0;">
+    <!-- 섹션 3: 오후 내시경 -->
+    <section id="afternoon" class="relative-z10 section-padding" style="background-color: #1e3a8a; color: white;"> 
         <div class="container afternoon-container flex flex-col items-center">
-            <div class="afternoon-left js-reveal">
-                <span class="text-blue font-bold text-sm" style="background: #facc15; color: #1e3a8a; padding: 0.25rem 0.75rem; border-radius: 0.25rem; display: inline-block; margin-bottom: 1rem;">강력 추천</span>
-                <h2 class="font-bold mb-6" style="line-height: 1.2; margin-bottom: 1.5rem;">
-                    <span class="text-lg" style="display:block; font-weight: 500; margin-bottom: 0.5rem; opacity: 0.9;">밤잠 설치는 오전 내시경 말고,</span>
-                    <span class="text-3xl md-text-4xl" style="font-size: 2.5rem;">
-                        여유로운 <br class="mobile-only-br">
-                        <span class="text-yellow">‘오후 내시경’</span><br>
-                        어떠세요?
-                    </span>
-                </h2>
-                <p class="text-lg" style="color: #bfdbfe; margin-bottom: 2rem;">
-                    오후에 오시면 고객님의 시간과 컨디션을<br>
-                    지켜드립니다.
-                </p>
-                
+            <div class="afternoon-left reveal js-reveal">
+                <span class="font-bold" style="background: #facc15; color: #1e3a8a; padding: 0.25rem 0.75rem; border-radius: 0.25rem; font-size: 0.85rem;">강력 추천</span>
+                <h2 class="font-bold mt-4" style="line-height: 1.2; font-size: 2.25rem;"> 여유로운 <br class="mobile-only-br"><span class="text-yellow">‘오후 내시경’</span> 어떠세요?</h2>
+                <p class="mt-4" style="color: #bfdbfe; font-size: 1.05rem;">오후에 오시면 시간과 컨디션을 지켜드립니다.</p>
                 <div class="recommend-box">
-                    <h4 class="recommend-title">🙆‍♀️ 이런 분께 딱입니다!</h4>
                     <ul class="recommend-list">
-                        <li class="recommend-item">
-                            <span class="recommend-icon"><i class="fa-regular fa-moon"></i></span>
-                            <span>약 먹느라 밤새 잠 한숨 못 자고 오시는 분</span>
-                        </li>
-                        <li class="recommend-item">
-                            <span class="recommend-icon"><i class="fa-solid fa-person-running"></i></span>
-                            <span>북적이는 오전 대기실이 싫으신 분</span>
-                        </li>
+                        <li class="recommend-item"><i class="fa-regular fa-moon mr-2" style="color:var(--accent-yellow)"></i><span>약 먹느라 밤새 잠 못 자는 고통 NO</span></li>
+                        <li class="recommend-item"><i class="fa-solid fa-clock mr-2" style="color:var(--accent-yellow)"></i><span>북적이는 오전 대기실을 피해 여유롭게</span></li>
                     </ul>
                 </div>
             </div>
-
-            <div class="afternoon-right js-reveal" style="margin-top: 2rem;">
-                <div class="benefit-card">
-                    <div class="benefit-num">1</div>
-                    <div>
-                        <h4 class="font-bold text-lg" style="margin-bottom: 0.5rem;">전날 저녁 굶지 마세요</h4>
-                        <p class="text-sm text-gray-500">오후 검진은 전날 18시 경<br>카스테라, 우유 섭취 가능!</p>
-                    </div>
-                </div>
-                <div class="benefit-card"> 
-                    <div class="benefit-num">2</div>
-                    <div>
-                        <h4 class="font-bold text-lg" style="margin-bottom: 0.5rem;">새벽 기상 NO</h4>
-                        <p class="text-sm text-gray-500">아침에 일어나 여유롭게 약 복용하세요.</p>
-                    </div>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-num">3</div>
-                    <div>
-                        <h4 class="font-bold text-lg" style="margin-bottom: 0.5rem;">더 쾌적한 검진 환경</h4>
-                        <p class="text-sm text-gray-500">대기 시간 단축, 의료진과 심도 있는 상담.</p>
-                    </div>
-                </div>
+            <div class="afternoon-right" style="margin-top: 2rem; width: 100%;">
+                <div class="benefit-card reveal js-reveal"><div class="benefit-num">1</div><div><h4 class="font-bold">전날 저녁 죽 섭취 가능</h4><p class="text-sm text-gray-500">오후 검진은 전날 저녁 6시경 식사 가능!</p></div></div>
+                <div class="benefit-card reveal js-reveal"><div class="benefit-num">2</div><div><h4 class="font-bold">새벽 기상 약 복용 NO</h4><p class="text-sm text-gray-500">당일 아침에 일어나 여유롭게 준비하세요.</p></div></div>
             </div>
-        </div>
+        </div> 
     </section>
 
-    <!-- Section 4: Tips -->
-    <section id="tips" class="relative-z10 bg-white" style="padding: 5rem 0;">
+    <!-- 섹션 4: 정결제 복용 팁 -->
+    <section id="tips" class="relative-z10 bg-white section-padding"> 
         <div class="container text-center">
-            <h2 class="section-title" style="margin-bottom: 3rem; font-size: 2rem; font-weight: 700;">정결제 복용<br>힘들지 않아요!</h2>
-            
-            <div class="grid md-grid-cols-3">
-                <div class="card js-reveal" style="background-color: #f9fafb;">
-                    <i class="fa-solid fa-pills text-blue" style="margin-bottom: 1rem;"></i>
-                    <h3 class="font-bold text-lg mb-2">장 정결제 물약/알약 처방</h3>
-                    <p class="text-sm text-gray-500">
-                        물약 또는 알약<br>
-                        처방 가능합니다.<br>
-                        <span style="font-size: 0.75rem; color: #9ca3af;">단, 비용이 다를 수 있습니다.</span>
-                    </p>
-                </div>
-                <div class="card js-reveal" style="background-color: #f9fafb; position: relative; overflow: hidden; border: 2px solid #fee2e2; transition-delay: 100ms;">
-                    <div style="position: absolute; top: 0; right: 0; background: #ef4444; color: white; font-size: 0.75rem; padding: 0.25rem 0.5rem; font-weight: bold;">주의</div>
-                    <i class="fa-solid fa-ban" style="color: #ef4444; margin-bottom: 1rem;"></i>
-                    <h3 class="font-bold text-lg mb-2">사탕/껌 주의사항</h3>
-                    <p class="text-sm text-gray-500">
-                        혈액·소변 검사가 있다면<br>
-                        <span style="color: #dc2626; font-weight: 700;">사탕, 껌 절대 금지!</span><br>
-                        오직 생수만 섭취하세요.
-                    </p>
-                </div>
-                <div class="card js-reveal" style="background-color: #f9fafb; transition-delay: 200ms;">
-                    <i class="fa-regular fa-clock text-blue" style="margin-bottom: 1rem;"></i>
-                    <h3 class="font-bold text-lg mb-2">오후 검진의 장점</h3>
-                    <p class="text-sm text-gray-500">당일 오전 6시에 복용 시작!<br>밤새 화장실 갈 필요 없어요.</p>
-                </div>
+            <h2 class="section-title reveal js-reveal">정결제 복용 힘들지 않아요!</h2>
+            <div class="grid md-grid-cols-3 mt-4">
+                <div class="card reveal js-reveal"><i class="fa-solid fa-pills"></i><h3 class="font-bold mb-2">물약/알약 선택 가능</h3><p class="text-sm text-gray-500">개인 선호에 맞는 처방이 가능합니다.</p></div>
+                <div class="card reveal js-reveal" style="border: 1px solid #fee2e2;"><i class="fa-solid fa-ban" style="color: #ef4444;"></i><h3 class="font-bold mb-2">사탕/껌 주의사항</h3><p class="text-sm text-gray-500">검사 전 당분 섭취는 피해주세요.</p></div>
+                <div class="card reveal js-reveal"><i class="fa-regular fa-clock"></i><h3 class="font-bold mb-2">당일 오전 복용</h3><p class="text-sm text-gray-500">밤새 화장실 갈 필요 없이 편안하게!</p></div>
             </div>
-        </div>
+        </div> 
     </section>
 
-    <!-- Footer -->
-    <footer class="relative-z10" style="background-color: #1f2937; color: white; padding: 4rem 0;">
-        <div class="container text-center js-reveal">
-            <h2 class="font-bold mb-6" style="margin-bottom: 1.5rem; line-height: 1.4;">
-                <span class="footer-main-text" style="font-size: 2.5rem; display: block; margin-bottom: 1rem; letter-spacing: -0.02em; font-weight: 800;">2026년의 시작</span>
-                <span class="text-xl" style="word-break: keep-all; font-weight: 500; opacity: 0.9;">한국건강관리협회 부산동부검진센터와 함께하세요</span>
-            </h2>
-            <p class="text-gray-500" style="color: #9ca3af; margin-bottom: 2.5rem;">건강은 건강할 때 지키는 것이 가장 좋습니다.</p>
-            
-            <div class="flex flex-col md-flex-row justify-center footer-btns" style="margin-bottom: 2rem; gap: 1rem; align-items: center;">
-                <a href="https://busan.kahp.or.kr/ho/medi/intro.do" target="_blank" class="btn btn-white" style="color: #111827;">
-                    <i class="fa-solid fa-laptop-medical mr-2"></i> 홈페이지 검진 예약하기
-                </a>
-                <a href="tel:0515536400" class="btn btn-blue">
-                    <i class="fa-solid fa-phone mr-2"></i> 051-553-6400 전화 예약하기
-                </a>
+    <!-- 푸터 -->
+    <footer class="relative-z10"> 
+        <div class="container text-center">
+            <h2 class="font-bold mb-4"> <span style="font-size: 2rem; display: block; font-weight: 800; margin-bottom: 0.5rem;">2026년의 시작</span> <span style="font-size: 1.1rem; opacity: 0.9;">한국건강관리협회 부산동부검진센터</span> </h2>
+            <div class="hero-btns" style="margin: 2.5rem 0;">
+                <a href="https://busan.kahp.or.kr/ho/medi/intro.do" target="_blank" class="btn btn-white">홈페이지 예약</a>
+                <a href="tel:0515536400" class="btn btn-blue">051-553-6400 전화 예약</a>
             </div>
-
-            <!-- Social Icons -->
-            <div class="flex justify-center" style="gap: 1.5rem; margin-bottom: 3rem;">
-                <a href="https://busan.kahp.or.kr/" target="_blank" class="social-btn btn-home" aria-label="홈페이지">
-                    <i class="fa-solid fa-house"></i>
-                </a>
-                <a href="https://blog.naver.com/kahpbusan" target="_blank" class="social-btn btn-naver" aria-label="네이버 블로그">
-                    <span style="font-weight: 900; font-family: sans-serif;">N</span>
-                </a>
-                <a href="https://pf.kakao.com/_hxlwFu/" target="_blank" class="social-btn btn-kakao" aria-label="카카오채널">
-                    <i class="fa-solid fa-comment"></i>
-                </a>
-                <a href="https://www.instagram.com/kahp__busan/" target="_blank" class="social-btn btn-insta" aria-label="인스타그램">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
+            <div class="flex justify-center" style="gap: 1.25rem; margin-bottom: 3rem;">
+                <a href="https://busan.kahp.or.kr/busanMain.do" target="_blank" class="social-btn btn-home" aria-label="홈페이지"><i class="fa-solid fa-house"></i></a>
+                <a href="https://blog.naver.com/kahpbusan" target="_blank" class="social-btn btn-naver" aria-label="블로그">N</a>
+                <a href="https://pf.kakao.com/_hxlwFu/" target="_blank" class="social-btn btn-kakao" aria-label="카카오채널"><i class="fa-solid fa-comment"></i></a>
+                <a href="https://www.instagram.com/kahp_busan/" target="_blank" class="social-btn btn-insta" aria-label="인스타그램"><i class="fa-brands fa-instagram"></i></a>
             </div>
-
-            <div style="border-top: 1px solid #374151; padding-top: 2rem; font-size: 0.875rem; color: #6b7280;">
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.8rem; color: #9ca3af; line-height: 1.6;">
                 <p style="font-weight: 700; color: white; margin-bottom: 0.5rem;">한국건강관리협회 부산동부검진센터</p>
-                <p style="margin-bottom: 0.5rem;">원장: 신세권 | 본부장: 김희철 | 주소: 부산광역시 동래구 충렬대로 145 (온천동)</p>
+                <p>주소: 부산광역시 동래구 충렬대로 145 (온천동)</p>
                 <p>&copy; 2025 KAHP Busan Dongbu. All rights reserved.</p>
             </div>
-        </div>
+        </div> 
     </footer>
 
-    <!-- Scripts -->
     <script>
-        // 1. Smooth Scroll
+        // 1. Smooth Scroll (헤더 높이 고려)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    const headerOffset = window.innerWidth <= 768 ? 60 : 70;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
             });
         });
 
-        // 2. Scroll Reveal
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
+        // 2. Scroll Reveal 애니메이션
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.js-reveal').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.js-reveal, .reveal').forEach(el => observer.observe(el));
 
-        // 3. Hero Scroll Effect (170% Start)
-        const heroBgLayer = document.querySelector('.hero-bg-layer');
-        const heroWrapper = document.querySelector('.mobile-scroll-wrapper');
+        // 3. 히어로 배경 줌 효과 (사용자 최적화 수치 2.5 반영)
+        const bgLayer = document.querySelector('.hero-bg-layer');
+        const wrapper = document.querySelector('.mobile-scroll-wrapper');
 
         function handleHeroScroll() {
-            const scrollY = window.scrollY;
+            const scrollY = window.scrollY || window.pageYOffset;
             const vh = window.innerHeight;
             const vw = window.innerWidth;
 
-            if (window.innerWidth <= 768) {
-                const startScale = 1.7; 
+            if (vw <= 768) {
+                const startScale = 2.5;
                 const endScale = 1;
-                const maxScroll = heroWrapper.offsetHeight - vh;
-                
+                const maxScroll = wrapper.offsetHeight - vh;
                 let progress = scrollY / maxScroll;
                 if (progress > 1) progress = 1;
                 if (progress < 0) progress = 0;
-
                 let currentScale = startScale - ((startScale - endScale) * progress);
-                if (currentScale < 1) currentScale = 1; 
-
-                heroBgLayer.style.transform = `scale(${currentScale})`;
-                
+                if (currentScale < 1) currentScale = 1;
+                bgLayer.style.transform = 'scale(' + currentScale + ')';
             } else {
-                let pcProgress = scrollY / vh; 
+                let pcProgress = scrollY / vh;
                 let pcSize = 170 - (pcProgress * 70);
-                
                 if (pcSize < 100) pcSize = 100;
-                
-                heroBgLayer.style.backgroundSize = `${pcSize}% auto`;
-                heroBgLayer.style.transform = 'none'; 
+                bgLayer.style.backgroundSize = pcSize + '% auto';
+                bgLayer.style.transform = 'none';
             }
         }
 
-        window.addEventListener('scroll', () => {
-            window.requestAnimationFrame(handleHeroScroll);
-        });
-
+        window.addEventListener('scroll', () => window.requestAnimationFrame(handleHeroScroll));
         window.addEventListener('load', handleHeroScroll);
         window.addEventListener('resize', handleHeroScroll);
     </script>
