@@ -21,6 +21,7 @@
         --text-dark: #1f2937;
         --text-light: #6b7280;
         --white: #ffffff;
+        --footer-bg: #1f2937;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -34,6 +35,7 @@
     }
     a { text-decoration: none; color: inherit; cursor: pointer; }
     ul { list-style: none; }
+    img { max-width: 100%; height: auto; }
 
     /* --- 유틸리티 --- */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; width: 100%; }
@@ -48,7 +50,9 @@
     .text-yellow { color: var(--accent-yellow); }
     .bg-white { background-color: var(--white); }
     .mobile-only-br { display: none; }
-    .relative-z10 { position: relative; z-index: 10; background-color: inherit; }
+    
+    /* [수정] 푸터 배경색이 상속되지 않도록 주의 */
+    .relative-z10 { position: relative; z-index: 10; }
 
     /* --- 섹션 공통 --- */
     .section-padding { padding: 4rem 0; }
@@ -75,13 +79,10 @@
     .hero-section {
         position: relative; height: 100vh; overflow: hidden;
         display: flex; align-items: center; justify-content: center;
-        color: white; text-align: center; 
-        /* [수정] 배경색을 검정에서 밝은 블루톤으로 변경하여 투명 이미지 대비 강화 */
-        background-color: #eff6ff; 
+        color: white; text-align: center; background-color: #eff6ff; 
     }
     .hero-bg-layer {
         position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        /* [수정] 이미지 파일명 반영 및 그라데이션 강도 조절 */
         background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
                           url('2026-풍선(투명).png');
         background-size: cover; background-position: center; background-repeat: no-repeat;
@@ -107,7 +108,7 @@
     .btn-blue { background-color: var(--primary-blue); color: white; }
     .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2); }
 
-    /* 히어로 버튼 그리드 */
+    /* [수정] 히어로 버튼 전용 그리드 */
     .hero-btns {
         display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;
         gap: 0.75rem; max-width: 1000px; margin: 0 auto; padding: 0 1rem;
@@ -153,13 +154,20 @@
         font-weight: 800; margin-right: 1rem; flex-shrink: 0; 
     }
 
-    /* --- 푸터 --- */
-    footer { background-color: #1f2937; color: white; padding: 4rem 0 3rem; }
+    /* --- 푸터 스타일 수정 --- */
+    footer { background-color: var(--footer-bg) !important; color: white !important; padding: 4rem 0 3rem; }
+    .footer-reservation-btns {
+        display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;
+        gap: 1rem; margin: 2rem 0;
+    }
+    .footer-reservation-btns .btn { min-width: 220px; flex: 0 1 auto; }
+    
     .social-btn { width: 3.25rem; height: 3.25rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; transition: opacity 0.3s; }
     .social-btn:hover { opacity: 0.8; }
-    .btn-naver { background-color: #03C75A; font-weight: 900; }
+    .btn-naver { background-color: #03C75A; font-weight: 900; color: white; }
     .btn-kakao { background-color: #FEE500; color: #3c1e1e; }
-    .btn-insta { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+    .btn-insta { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); color: white; }
+    .btn-home { background-color: var(--primary-blue); color: white; }
 
     /* --- [PC 대응] --- */
     @media (min-width: 768px) {
@@ -189,20 +197,14 @@
         .hero-title { font-size: 2.25rem !important; margin-bottom: 1rem; }
         .hero-desc { font-size: 0.95rem; margin-bottom: 2rem; }
 
-        /* 모바일 버튼 1+2 레이아웃 */
-        .hero-btns {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.6rem;
-            padding: 0 1rem;
-        }
+        /* 히어로 버튼 1+2 레이아웃 */
+        .hero-btns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; padding: 0 1rem; }
         .hero-btns a:first-child { grid-column: span 2; } 
-        .hero-btns .btn { 
-            min-width: 0 !important; 
-            padding: 0.8rem 0.5rem; 
-            font-size: 0.85rem;
-            height: auto;
-        }
+        .hero-btns .btn { min-width: 0 !important; padding: 0.8rem 0.5rem; font-size: 0.85rem; height: auto; }
+
+        /* [수정] 푸터 버튼은 모바일에서도 나란히 정렬 (공간 부족 시 줄바꿈) */
+        .footer-reservation-btns { flex-direction: column; align-items: center; }
+        .footer-reservation-btns .btn { width: 100%; max-width: 320px; }
 
         .section-title { font-size: 1.5rem; }
         .section-desc { font-size: 0.9rem; margin-bottom: 2rem; }
@@ -269,7 +271,7 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col text-left" style="padding: 0.5rem 0;">
+                <div class="flex flex-col js-reveal text-left" style="padding: 0.5rem 0;">
                     <div class="check-item reveal js-reveal"><div class="check-icon"><i class="fa-solid fa-check"></i></div><div><h3 class="font-bold">위암 검진</h3><p class="text-sm text-gray-500">만 40세 이상 남녀 (2년 주기)</p></div></div>
                     <div class="check-item reveal js-reveal"><div class="check-icon"><i class="fa-solid fa-check"></i></div><div><h3 class="font-bold">대장암 검진</h3><p class="text-sm text-gray-500">만 50세 이상 남녀 (1년 주기)</p></div></div>
                     <div class="check-item reveal js-reveal"><div class="check-icon"><i class="fa-solid fa-check"></i></div><div><h3 class="font-bold">간암·유방암·자궁경부암</h3><p class="text-sm text-gray-500">연령 및 주기별 검진 대상 확인</p></div></div>
@@ -341,17 +343,25 @@
     <!-- 푸터 -->
     <footer class="relative-z10"> 
         <div class="container text-center">
-            <h2 class="font-bold mb-4"> <span style="font-size: 2rem; display: block; font-weight: 800; margin-bottom: 0.5rem;">2026년의 시작</span> <span style="font-size: 1.1rem; opacity: 0.9;">한국건강관리협회 건강검진센터 부산동래</span> </h2>
-            <div class="hero-btns" style="margin: 2.5rem 0;">
-                <a href="https://busan.kahp.or.kr/ho/medi/intro.do" target="_blank" class="btn btn-white">홈페이지 예약</a>
-                <a href="tel:0515536400" class="btn btn-blue">051-553-6400 전화 예약</a>
+            <h2 class="font-bold mb-4"> 
+                <span class="footer-main-text" style="font-size: 2rem; display: block; font-weight: 800; margin-bottom: 0.5rem;">2026년의 시작</span> 
+                <span style="font-size: 1.1rem; opacity: 0.9;">한국건강관리협회 건강검진센터 부산동래</span> 
+            </h2>
+            <p style="color: #9ca3af; margin-bottom: 2rem;">건강은 건강할 때 지키는 것이 가장 좋습니다.</p>
+            
+            <!-- [수정] 푸터 전용 클래스 적용 (전화 버튼 너비 복구) -->
+            <div class="footer-reservation-btns">
+                <a href="https://busan.kahp.or.kr/ho/medi/intro.do" target="_blank" class="btn btn-white shadow-lg">홈페이지 예약</a>
+                <a href="tel:0515536400" class="btn btn-blue shadow-lg">051-553-6400 전화 예약</a>
             </div>
+
             <div class="flex justify-center" style="gap: 1.25rem; margin-bottom: 3rem;">
                 <a href="https://busan.kahp.or.kr/busanMain.do" target="_blank" class="social-btn btn-home" aria-label="홈페이지"><i class="fa-solid fa-house"></i></a>
                 <a href="https://blog.naver.com/kahpbusan" target="_blank" class="social-btn btn-naver" aria-label="블로그">N</a>
                 <a href="https://pf.kakao.com/_hxlwFu/" target="_blank" class="social-btn btn-kakao" aria-label="카카오채널"><i class="fa-solid fa-comment"></i></a>
                 <a href="https://www.instagram.com/kahp_busan/" target="_blank" class="social-btn btn-insta" aria-label="인스타그램"><i class="fa-brands fa-instagram"></i></a>
             </div>
+            
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.8rem; color: #9ca3af; line-height: 1.6;">
                 <p style="font-weight: 700; color: white; margin-bottom: 0.5rem;">한국건강관리협회 건강검진센터 부산동래</p>
                 <p>주소: 부산광역시 동래구 충렬대로 145 (온천동)</p>
@@ -361,7 +371,7 @@
     </footer>
 
     <script>
-        // 1. Smooth Scroll (ID 기반 섹션 이동)
+        // 1. Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -387,17 +397,10 @@
 
         var reveals = document.querySelectorAll('.js-reveal, .reveal');
         for (var i = 0; i < reveals.length; i++) {
-            // 순차적 등장 효과를 위한 딜레이 설정
-            var parent = reveals[i].parentElement;
-            var siblings = parent.querySelectorAll(':scope > .reveal');
-            if (siblings.length > 1) {
-                var index = Array.prototype.indexOf.call(siblings, reveals[i]);
-                reveals[i].style.transitionDelay = (index * 0.1) + 's';
-            }
             revealObserver.observe(reveals[i]);
         }
 
-        // 3. 히어로 배경 줌 효과 (모바일 2.5배 줌 반영)
+        // 3. 히어로 배경 줌 효과
         var bgLayer = document.querySelector('.hero-bg-layer');
         var wrapper = document.querySelector('.mobile-scroll-wrapper');
 
